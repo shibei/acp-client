@@ -206,9 +206,9 @@ class TargetObservationExecutor:
         
         # 基础状态
         if status['acp_status'].get('is_running'):
-            status_msg = f"[{current_time}] {target_name} 状态: 运行中 ✓"
+            status_msg = f"[{current_time}] {target_name} 状态: 运行中 [OK]"
         else:
-            status_msg = f"[{current_time}] {target_name} 状态: 已停止 ✗"
+            status_msg = f"[{current_time}] {target_name} 状态: 已停止 [STOP]"
         
         # 进度信息
         progress = status['progress'] * 100

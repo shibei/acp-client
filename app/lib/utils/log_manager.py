@@ -71,6 +71,12 @@ class LogManager:
             console_handler = logging.StreamHandler()
             console_handler.setLevel(self.log_level)
             console_handler.setFormatter(formatter)
+            # 设置控制台编码为UTF-8，避免Unicode字符编码错误
+            if hasattr(console_handler.stream, 'reconfigure'):
+                try:
+                    console_handler.stream.reconfigure(encoding='utf-8')
+                except:
+                    pass  # 如果reconfigure失败，使用默认编码
             logger.addHandler(console_handler)
         
         return logger

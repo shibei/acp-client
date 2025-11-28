@@ -86,8 +86,8 @@ warning_text = '''
 warnings = client.get_observatory_warnings(warning_text)
 print(f'解析到的警告: {warnings}')
 
-print('\n✓ 基于HAR文件分析的所有功能测试通过！')
-print('✓ ACP客户端现在支持:')
+print('\n[OK] 基于HAR文件分析的所有功能测试通过！')
+print('[OK] ACP客户端现在支持:')
 print('  - 完整的ACP状态解析（编码格式）')
 print('  - M31等多目标成像计划创建')
 print('  - 复杂的表单数据构建（支持16个滤镜）')

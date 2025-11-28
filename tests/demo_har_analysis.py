@@ -154,12 +154,12 @@ _s('sm_local','@an19%3A44%3A15');_s('sm_utc','@an11%3A44%3A15');_s('sm_lst','@an
     
     print("\n=== 演示完成 ===")
     print("\n基于HAR文件分析，ACP客户端现在支持:")
-    print("✓ 完整的ACP编码状态解析")
-    print("✓ 多滤镜成像计划创建（支持最多16个滤镜）")
-    print("✓ 复杂的表单数据构建")
-    print("✓ 警告信息提取")
-    print("✓ 自动对焦和抖动控制")
-    print("✓ 状态摘要生成")
+    print("[OK] 完整的ACP编码状态解析")
+    print("[OK] 多滤镜成像计划创建（支持最多16个滤镜）")
+    print("[OK] 复杂的表单数据构建")
+    print("[OK] 警告信息提取")
+    print("[OK] 自动对焦和抖动控制")
+    print("[OK] 状态摘要生成")
     print("\n这些功能完全基于HAR文件中的实际数据实现！")
 
 if __name__ == "__main__":

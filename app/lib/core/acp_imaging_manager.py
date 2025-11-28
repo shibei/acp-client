@@ -76,7 +76,7 @@ class ACPImagingManager:
 
         if self.connection_manager.dryrun:
             print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] 模拟启动成像计划...")
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] ✓ 模拟启动成功！")
+            print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] [OK] 模拟启动成功！")
             self._print_plan_summary(plan, is_dryrun=True)
             return True
 
@@ -103,15 +103,15 @@ class ACPImagingManager:
             success = client.start_imaging_plan(imaging_plan)
 
             if success:
-                print(f"[{datetime.now().strftime('%H:%M:%S')}] ✓ 成像计划启动成功！")
+                print(f"[{datetime.now().strftime('%H:%M:%S')}] [OK] 成像计划启动成功！")
                 self._print_plan_summary(plan)
             else:
-                print(f"[{datetime.now().strftime('%H:%M:%S')}] ✗ 成像计划启动失败！")
+                print(f"[{datetime.now().strftime('%H:%M:%S')}] [ERROR] 成像计划启动失败！")
 
             return success
 
         except Exception as e:
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] ✗ 启动成像计划时出错: {e}")
+            print(f"[{datetime.now().strftime('%H:%M:%S')}] [ERROR] 启动成像计划时出错: {e}")
             return False
     
     def get_current_plan_status(self) -> Dict[str, Any]:

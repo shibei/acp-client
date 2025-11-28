@@ -29,7 +29,7 @@ def test_config():
         # 加载配置
         config = MultiTargetConfig(config_file)
         
-        print("✓ 配置文件加载成功")
+        print("[OK] 配置文件加载成功")
         
         # 打印配置摘要
         config.print_schedule()
@@ -40,20 +40,20 @@ def test_config():
         next_target = config.get_next_target(current_time)
         
         if current_target:
-            print(f"✓ 当前目标: {current_target['name']}")
+            print(f"[OK] 当前目标: {current_target['name']}")
         else:
-            print("✓ 当前无目标")
+            print("[OK] 当前无目标")
         
         if next_target:
-            print(f"✓ 下一个目标: {next_target['name']} (开始时间: {next_target['start_time']})")
+            print(f"[OK] 下一个目标: {next_target['name']} (开始时间: {next_target['start_time']})")
         else:
-            print("✓ 无后续目标")
+            print("[OK] 无后续目标")
         
         # 测试计划构建器
         plan_builder = MultiTargetPlanBuilder(config)
         plans = plan_builder.build_all_plans()
         
-        print(f"✓ 成功创建 {len(plans)} 个观测计划")
+        print(f"[OK] 成功创建 {len(plans)} 个观测计划")
         
         # 打印计划摘要
         plan_builder.print_summary()
@@ -61,7 +61,7 @@ def test_config():
         return True
         
     except Exception as e:
-        print(f"✗ 测试失败: {str(e)}")
+        print(f"[ERROR] 测试失败: {str(e)}")
         return False
 
 
@@ -76,14 +76,14 @@ def test_yaml_syntax():
         with open(config_file, 'r', encoding='utf-8') as f:
             yaml.safe_load(f)
         
-        print("✓ YAML文件语法正确")
+        print("[OK] YAML文件语法正确")
         return True
         
     except yaml.YAMLError as e:
-        print(f"✗ YAML语法错误: {str(e)}")
+        print(f"[ERROR] YAML语法错误: {str(e)}")
         return False
     except Exception as e:
-        print(f"✗ 文件读取错误: {str(e)}")
+        print(f"[ERROR] 文件读取错误: {str(e)}")
         return False
 
 
@@ -106,7 +106,7 @@ def main():
     
     print()
     print("="*60)
-    print("✓ 所有测试通过！")
+    print("[OK] 所有测试通过！")
     print("可以使用: python auto_observe_multi_target.py 开始观测")
     
     return 0

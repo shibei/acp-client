@@ -435,7 +435,7 @@ class ACPClientGUI:
         
         # 插入验证结果
         for result in results:
-            status = "✓" if result.get('valid', False) else "✗"
+            status = "[OK]" if result.get('valid', False) else "[ERROR]"
             name = result['name']
             text.insert(tk.END, f"{status} {name}\n")
             

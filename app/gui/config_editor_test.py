@@ -141,14 +141,14 @@ class ConfigEditorTester:
             ttk.Button(button_frame, text="关闭", command=test_window.destroy).pack(side=tk.RIGHT)
             ttk.Button(button_frame, text="应用配置", command=lambda: self.apply_config(editor, test_window)).pack(side=tk.RIGHT, padx=(0, 5))
             
-            self.log_result("✓ 配置编辑器创建成功")
-            self.log_result("✓ 界面组件加载完成")
-            self.log_result("✓ 配置数据加载成功")
+            self.log_result("[OK] 配置编辑器创建成功")
+            self.log_result("[OK] 界面组件加载完成")
+            self.log_result("[OK] 配置数据加载成功")
             
             self.status_var.set("配置编辑器测试完成 - 请手动操作测试窗口")
             
         except Exception as e:
-            self.log_result(f"✗ 配置编辑器测试失败: {str(e)}")
+            self.log_result(f"[ERROR] 配置编辑器测试失败: {str(e)}")
             self.status_var.set("配置编辑器测试失败")
             
     def apply_config(self, editor, window):
@@ -159,10 +159,10 @@ class ConfigEditorTester:
             self.log_result(f"配置名称: {config.get('targets', [{}])[0].get('name', '未知')}")
             self.log_result(f"目标数量: {len(config.get('targets', []))}")
             self.log_result(f"服务器URL: {config.get('acp_server', {}).get('url', '未设置')}")
-            self.log_result("✓ 配置应用成功")
+            self.log_result("[OK] 配置应用成功")
             window.destroy()
         except Exception as e:
-            self.log_result(f"✗ 配置应用失败: {str(e)}")
+            self.log_result(f"[ERROR] 配置应用失败: {str(e)}")
             
     def test_validation(self):
         """测试配置验证功能"""
@@ -178,14 +178,14 @@ class ConfigEditorTester:
             invalid_config['acp_server']['url'] = ''  # 空URL
             invalid_config['targets'][0]['ra'] = 'invalid'  # 无效坐标
             
-            self.log_result("✓ 配置验证测试完成")
-            self.log_result("✓ 有效配置通过验证")
-            self.log_result("✓ 无效配置被正确识别")
+            self.log_result("[OK] 配置验证测试完成")
+            self.log_result("[OK] 有效配置通过验证")
+            self.log_result("[OK] 无效配置被正确识别")
             
             self.status_var.set("配置验证测试完成")
             
         except Exception as e:
-            self.log_result(f"✗ 配置验证测试失败: {str(e)}")
+            self.log_result(f"[ERROR] 配置验证测试失败: {str(e)}")
             self.status_var.set("配置验证测试失败")
             
     def test_templates(self):
@@ -200,13 +200,13 @@ class ConfigEditorTester:
                 '行星观测'
             ]
             
-            self.log_result(f"✓ 可用模板: {', '.join(templates)}")
-            self.log_result("✓ 模板加载功能正常")
+            self.log_result(f"[OK] 可用模板: {', '.join(templates)}")
+            self.log_result("[OK] 模板加载功能正常")
             
             self.status_var.set("模板加载测试完成")
             
         except Exception as e:
-            self.log_result(f"✗ 模板加载测试失败: {str(e)}")
+            self.log_result(f"[ERROR] 模板加载测试失败: {str(e)}")
             self.status_var.set("模板加载测试失败")
             
     def test_file_operations(self):
@@ -222,20 +222,20 @@ class ConfigEditorTester:
             with open(test_file, 'w', encoding='utf-8') as f:
                 yaml.dump(self.test_config, f, default_flow_style=False, allow_unicode=True)
             
-            self.log_result(f"✓ 配置保存到: {test_file}")
+            self.log_result(f"[OK] 配置保存到: {test_file}")
             
             # 读取配置
             with open(test_file, 'r', encoding='utf-8') as f:
                 loaded_config = yaml.safe_load(f)
             
-            self.log_result("✓ 配置读取成功")
+            self.log_result("[OK] 配置读取成功")
             
             # 测试JSON导出
             json_file = Path("test_config.json")
             with open(json_file, 'w', encoding='utf-8') as f:
                 json.dump(self.test_config, f, indent=2, ensure_ascii=False)
             
-            self.log_result(f"✓ JSON导出到: {json_file}")
+            self.log_result(f"[OK] JSON导出到: {json_file}")
             
             # 清理测试文件
             if test_file.exists():
@@ -243,11 +243,11 @@ class ConfigEditorTester:
             if json_file.exists():
                 json_file.unlink()
                 
-            self.log_result("✓ 文件操作测试完成")
+            self.log_result("[OK] 文件操作测试完成")
             self.status_var.set("文件操作测试完成")
             
         except Exception as e:
-            self.log_result(f"✗ 文件操作测试失败: {str(e)}")
+            self.log_result(f"[ERROR] 文件操作测试失败: {str(e)}")
             self.status_var.set("文件操作测试失败")
 
 def main():

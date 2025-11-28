@@ -66,7 +66,7 @@ class ObservationOrchestrator:
                     status_msg = f"[{current_time}] ACP状态: "
                     
                     if is_running:
-                        status_msg += "运行中 ✓"
+                        status_msg += "运行中 [OK]"
                         
                         # 尝试获取更多状态信息
                         try:
@@ -76,7 +76,7 @@ class ObservationOrchestrator:
                         except:
                             pass
                     else:
-                        status_msg += "已停止 ✗"
+                        status_msg += "已停止 [STOP]"
                     
                     print(status_msg)
                     self.log_manager.info(status_msg)

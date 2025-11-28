@@ -170,7 +170,7 @@ class MultiTargetOrchestrator:
                     status_msg = f"[{current_time}] {target_name} 状态: "
                     
                     if is_running:
-                        status_msg += "运行中 ✓"
+                        status_msg += "运行中 [OK]"
                         
                         # 尝试获取更多状态信息
                         try:
@@ -180,7 +180,7 @@ class MultiTargetOrchestrator:
                         except:
                             pass
                     else:
-                        status_msg += "已停止 ✗"
+                        status_msg += "已停止 [STOPPED]"
                         print(status_msg)
                         print(f"[{datetime.now().strftime('%H:%M:%S')}] {target_name} 观测似乎已完成")
                         break
@@ -248,15 +248,15 @@ class MultiTargetOrchestrator:
             status = self.target_completion_status.get(target_name, 'not_started')
             
             if status == 'completed':
-                status_icon = "✓"
+                status_icon = "[OK]"
                 completed_count += 1
             elif status == 'failed' or status == 'error':
-                status_icon = "✗"
+                status_icon = "[ERROR]"
                 failed_count += 1
             elif status == 'running':
-                status_icon = "~"
+                status_icon = "[RUNNING]"
             else:
-                status_icon = "○"
+                status_icon = "[PENDING]"
             
             print(f"{status_icon} {target_name}: {status}")
         

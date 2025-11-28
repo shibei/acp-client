@@ -154,3 +154,68 @@
 2025-11-28 15:37:55 - MultiTargetOrchestrator - INFO - 观测序列完成: 成功 0 个, 失败 3 个
 2025-11-28 15:37:55 - MultiTargetOrchestrator - INFO - 正在清理资源...
 2025-11-28 15:37:55 - MultiTargetOrchestrator - INFO - 多目标观测协调器关闭
+2025-11-28 16:33:50 - MultiTargetOrchestrator - INFO - 正在初始化多目标观测协调器...
+2025-11-28 16:33:50 - MultiTargetOrchestrator - INFO - 多目标观测协调器初始化完成
+2025-11-28 16:33:50 - MultiTargetOrchestrator - INFO - 多目标自动观测系统启动
+2025-11-28 16:33:50 - MultiTargetOrchestrator - INFO - 开始执行观测序列...
+2025-11-28 16:33:50 - MultiTargetOrchestrator - INFO - 正在计算调度摘要...
+2025-11-28 16:33:50 - MultiTargetOrchestrator - INFO - 正在验证目标列表...
+2025-11-28 16:33:50 - MultiTargetOrchestrator - INFO - 目标 NGC 1499: 可观测性=True, 时间有效=True
+2025-11-28 16:33:50 - MultiTargetOrchestrator - INFO - 目标 M 31: 可观测性=False, 时间有效=True
+2025-11-28 16:33:50 - MultiTargetOrchestrator - INFO - 目标 M 33: 可观测性=False, 时间有效=True
+2025-11-28 16:33:50 - MultiTargetOrchestrator - INFO - 观测调度摘要: 总目标 3 个，可观测 1 个 - 时间范围: 2025-11-28 16:33 到 2025-11-28 16:33 (持续 0.0 小时)
+2025-11-28 16:33:50 - MultiTargetOrchestrator - INFO - 计划观测 3 个目标
+2025-11-28 16:33:54 - MultiTargetOrchestrator - INFO - 开始观测目标 1/3: NGC 1499
+2025-11-28 16:33:54 - MultiTargetOrchestrator - INFO - 开始执行 NGC 1499 观测任务
+2025-11-28 16:34:00 - MultiTargetOrchestrator - ERROR - NGC 1499 观测计划启动失败
+2025-11-28 16:34:00 - MultiTargetOrchestrator - ERROR - 目标 NGC 1499 观测执行失败
+2025-11-28 16:34:00 - MultiTargetOrchestrator - INFO - 开始观测目标 2/3: M 31
+2025-11-28 16:34:00 - MultiTargetOrchestrator - INFO - 开始执行 M 31 观测任务
+2025-11-28 16:34:06 - MultiTargetOrchestrator - ERROR - M 31 观测计划启动失败
+2025-11-28 16:34:06 - MultiTargetOrchestrator - ERROR - 目标 M 31 观测执行失败
+2025-11-28 16:34:06 - MultiTargetOrchestrator - INFO - 开始观测目标 3/3: M 33
+2025-11-28 16:34:06 - MultiTargetOrchestrator - INFO - 开始执行 M 33 观测任务
+2025-11-28 16:34:12 - MultiTargetOrchestrator - ERROR - M 33 观测计划启动失败
+2025-11-28 16:34:12 - MultiTargetOrchestrator - ERROR - 目标 M 33 观测执行失败
+2025-11-28 16:34:12 - MultiTargetOrchestrator - INFO - 观测序列完成: 成功 0 个, 失败 3 个
+2025-11-28 16:34:12 - MultiTargetOrchestrator - INFO - 正在清理资源...
+2025-11-28 16:34:12 - MultiTargetOrchestrator - INFO - 多目标观测协调器关闭
+2025-11-28 21:45:21 - MultiTargetOrchestrator - INFO - 正在初始化多目标观测协调器...
+2025-11-28 21:45:21 - MultiTargetOrchestrator - INFO - 多目标观测协调器初始化完成
+2025-11-28 21:45:21 - MultiTargetOrchestrator - INFO - 多目标自动观测系统启动
+2025-11-28 21:45:21 - MultiTargetOrchestrator - INFO - 开始执行观测序列...
+2025-11-28 21:45:21 - MultiTargetOrchestrator - INFO - 正在计算调度摘要...
+2025-11-28 21:45:21 - MultiTargetOrchestrator - INFO - 正在验证目标列表...
+2025-11-28 21:45:21 - MultiTargetOrchestrator - INFO - 目标 IC 1795: 可观测性=True, 时间有效=True
+2025-11-28 21:45:21 - MultiTargetOrchestrator - INFO - 目标 M 31: 可观测性=True, 时间有效=True
+2025-11-28 21:45:21 - MultiTargetOrchestrator - INFO - 观测调度摘要: 总目标 2 个，可观测 2 个 - 时间范围: 2025-11-28 21:45 到 2025-11-28 21:45 (持续 0.0 小时)
+2025-11-28 21:45:21 - MultiTargetOrchestrator - INFO - 计划观测 2 个目标
+2025-11-28 21:45:23 - MultiTargetOrchestrator - INFO - 开始观测目标 1/2: IC 1795
+2025-11-28 21:47:00 - MultiTargetOrchestrator - INFO - 开始执行 IC 1795 观测任务
+2025-11-28 21:47:05 - MultiTargetOrchestrator - INFO - IC 1795 观测计划已启动
+2025-11-28 21:47:05 - MultiTargetOrchestrator - INFO - 目标 IC 1795 观测完成
+2025-11-28 21:47:05 - MultiTargetOrchestrator - INFO - 开始观测目标 2/2: M 31
+2025-11-28 21:57:03 - MultiTargetOrchestrator - INFO - 正在初始化多目标观测协调器...
+2025-11-28 21:57:03 - MultiTargetOrchestrator - INFO - 多目标观测协调器初始化完成
+2025-11-28 21:57:03 - MultiTargetOrchestrator - INFO - 正在验证目标列表...
+2025-11-28 21:57:03 - MultiTargetOrchestrator - INFO - 目标 IC 1871: 可观测性=True, 时间有效=True
+2025-11-28 21:57:03 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-28 21:57:15 - MultiTargetOrchestrator - INFO - 正在初始化多目标观测协调器...
+2025-11-28 21:57:15 - MultiTargetOrchestrator - INFO - 多目标观测协调器初始化完成
+2025-11-28 21:57:15 - MultiTargetOrchestrator - INFO - 正在计算调度摘要...
+2025-11-28 21:57:15 - MultiTargetOrchestrator - INFO - 正在验证目标列表...
+2025-11-28 21:57:15 - MultiTargetOrchestrator - INFO - 目标 IC 1871: 可观测性=True, 时间有效=True
+2025-11-28 21:57:15 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-28 21:57:15 - MultiTargetOrchestrator - INFO - 观测调度摘要: 总目标 2 个，可观测 2 个 - 时间范围: 2025-11-28 21:57 到 2025-11-28 21:57 (持续 0.0 小时)
+2025-11-28 21:57:57 - MultiTargetOrchestrator - INFO - 正在初始化多目标观测协调器...
+2025-11-28 21:57:57 - MultiTargetOrchestrator - INFO - 多目标观测协调器初始化完成
+2025-11-28 21:57:57 - MultiTargetOrchestrator - INFO - 正在计算调度摘要...
+2025-11-28 21:57:57 - MultiTargetOrchestrator - INFO - 正在验证目标列表...
+2025-11-28 21:57:57 - MultiTargetOrchestrator - INFO - 目标 IC 1871: 可观测性=True, 时间有效=True
+2025-11-28 21:57:57 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-28 21:57:57 - MultiTargetOrchestrator - INFO - 观测调度摘要: 总目标 2 个，可观测 2 个 - 时间范围: 2025-11-28 21:57 到 2025-11-28 21:57 (持续 0.0 小时)
+2025-11-28 21:58:17 - MultiTargetOrchestrator - INFO - 正在初始化多目标观测协调器...
+2025-11-28 21:58:17 - MultiTargetOrchestrator - INFO - 多目标观测协调器初始化完成
+2025-11-28 21:58:17 - MultiTargetOrchestrator - INFO - 正在验证目标列表...
+2025-11-28 21:58:17 - MultiTargetOrchestrator - INFO - 目标 IC 1871: 可观测性=True, 时间有效=True
+2025-11-28 21:58:17 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True

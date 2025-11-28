@@ -109,11 +109,11 @@ class ConfigEditorDemo:
 • 导入/导出功能
 
 主要特点：
-✓ 用户友好的图形界面
-✓ 智能输入验证
-✓ 实时配置预览
-✓ 模板化配置管理
-✓ 支持多种配置格式
+[OK] 用户友好的图形界面
+[OK] 智能输入验证
+[OK] 实时配置预览
+[OK] 模板化配置管理
+[OK] 支持多种配置格式
         """
         
         info_label = ttk.Label(info_frame, text=info_text, justify=tk.LEFT)

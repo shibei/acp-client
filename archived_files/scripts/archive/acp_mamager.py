@@ -40,7 +40,7 @@ class ACPManager:
         
         if dryrun:
             print(f"\n[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] 模拟连接到ACP服务器...")
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] ✓ 模拟连接成功")
+            print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] [OK] 模拟连接成功")
             self.log_manager.info(f"[DRYRUN] 模拟连接到ACP服务器: {acp_url}")
             self.client = "DRYRUN_CLIENT"
             return True
@@ -48,11 +48,11 @@ class ACPManager:
         try:
             print(f"\n[{datetime.now().strftime('%H:%M:%S')}] 正在连接到ACP服务器...")
             self.client = ACPClient(acp_url, acp_user, acp_password)
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] ✓ 成功连接到ACP服务器")
+            print(f"[{datetime.now().strftime('%H:%M:%S')}] [OK] 成功连接到ACP服务器")
             self.log_manager.info(f"成功连接到ACP服务器: {acp_url}")
             return True
         except Exception as e:
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] ✗ 连接失败: {e}")
+            print(f"[{datetime.now().strftime('%H:%M:%S')}] [ERROR] 连接失败: {e}")
             self.log_manager.error(f"连接ACP服务器失败: {e}", exc_info=True)
             return False
     
@@ -68,7 +68,7 @@ class ACPManager:
             
         if dryrun:
             print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] 模拟停止当前脚本...")
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] ✓ 模拟停止成功")
+            print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] [OK] 模拟停止成功")
             self.log_manager.info("[DRYRUN] 模拟停止当前脚本")
             return True
         
@@ -78,15 +78,15 @@ class ACPManager:
             time.sleep(wait_seconds)
             
             if success:
-                print(f"[{datetime.now().strftime('%H:%M:%S')}] ✓ 当前脚本已停止")
+                print(f"[{datetime.now().strftime('%H:%M:%S')}] [OK] 当前脚本已停止")
                 self.log_manager.info("成功停止当前脚本")
             else:
-                print(f"[{datetime.now().strftime('%H:%M:%S')}] ⚠ 停止脚本可能失败，继续执行...")
+                print(f"[{datetime.now().strftime('%H:%M:%S')}] [WARNING] 停止脚本可能失败，继续执行...")
                 self.log_manager.warning("停止脚本响应异常")
             
             return success
         except Exception as e:
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] ✗ 停止脚本时出错: {e}")
+            print(f"[{datetime.now().strftime('%H:%M:%S')}] [ERROR] 停止脚本时出错: {e}")
             self.log_manager.error(f"停止脚本失败: {e}", exc_info=True)
             return False
     
@@ -115,7 +115,7 @@ class ACPManager:
                 total_hours = 1  # 默认值
                 
             estimated_finish = datetime.now() + timedelta(hours=total_hours)
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] ✓ 模拟启动成功！")
+            print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] [OK] 模拟启动成功！")
             self._print_success_info(estimated_finish, is_dryrun=True)
             return True
         
@@ -136,15 +136,15 @@ class ACPManager:
                     total_hours = 1  # 默认值
                     
                 estimated_finish = datetime.now() + timedelta(hours=total_hours)
-                print(f"[{datetime.now().strftime('%H:%M:%S')}] ✓ 成像计划启动成功！")
+                print(f"[{datetime.now().strftime('%H:%M:%S')}] [OK] 成像计划启动成功！")
                 self._print_success_info(estimated_finish)
             else:
-                print(f"[{datetime.now().strftime('%H:%M:%S')}] ✗ 成像计划启动失败！")
+                print(f"[{datetime.now().strftime('%H:%M:%S')}] [ERROR] 成像计划启动失败！")
                 self.log_manager.error("成像计划启动失败")
             
             return success
         except Exception as e:
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] ✗ 启动成像计划时出错: {e}")
+            print(f"[{datetime.now().strftime('%H:%M:%S')}] [ERROR] 启动成像计划时出错: {e}")
             self.log_manager.error(f"启动成像计划失败: {e}", exc_info=True)
             return False
     

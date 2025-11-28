@@ -52,7 +52,7 @@ def main():
             
             print(f"\n验证结果:")
             for result in validation_results:
-                status = "✓" if result.get('valid', False) else "✗"
+                status = "[OK]" if result.get('valid', False) else "[ERROR]"
                 print(f"{status} {result['name']}")
                 if not result.get('valid', False):
                     if 'error' in result:
@@ -70,14 +70,13 @@ def main():
             print(f"总目标数: {summary['total_targets']}")
             print(f"有效目标数: {summary['valid_targets']}")
             print(f"无效目标数: {summary['invalid_targets']}")
-            print(f"开始时间: {summary['start_time'].strftime('%Y-%m-%d %H:%M:%S')}")
-            print(f"结束时间: {summary['end_time'].strftime('%Y-%m-%d %H:%M:%S')}")
+            print(f"当前时间: {summary['current_time'].strftime('%Y-%m-%d %H:%M:%S')}")
             print(f"总持续时间: {summary['total_duration_hours']:.1f} 小时")
             
             if summary['validation_results']:
                 print(f"\n详细验证结果:")
                 for result in summary['validation_results']:
-                    status = "✓" if result.get('valid', False) else "✗"
+                    status = "[OK]" if result.get('valid', False) else "[ERROR]"
                     print(f"{status} {result['name']}")
             
             return 0
@@ -101,7 +100,7 @@ def main():
         if results['target_results']:
             print(f"\n详细结果:")
             for result in results['target_results']:
-                status = "✓" if result['success'] else "✗"
+                status = "[OK]" if result['success'] else "[ERROR]"
                 print(f"{status} {result['target']}")
         
         # 清理资源
