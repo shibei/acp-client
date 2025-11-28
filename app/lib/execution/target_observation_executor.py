@@ -346,6 +346,18 @@ class TargetObservationExecutor:
                     print(f"[{current_time.strftime('%H:%M:%S')}] 观测超时（{timeout_minutes}分钟）")
                     break
                 
+                # 检查中天反转等待
+                if status['meridian_info'].get('wait_needed'):
+                    print(f"[{current_time.strftime('%H:%M:%S')}] 检测到中天反转等待需求")
+                    wait_success = self.meridian_manager.wait_for_meridian_flip(
+                        target.ra, target.dec, current_time
+                    )
+                    if not wait_success:
+                        result['success'] = False
+                        result['error'] = '中天反转等待被中断'
+                        print(f"[{current_time.strftime('%H:%M:%S')}] 中天反转等待被中断")
+                        break
+                
                 time.sleep(30)  # 30秒检查一次
                 
         except KeyboardInterrupt:
