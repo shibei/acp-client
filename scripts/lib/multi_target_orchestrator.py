@@ -8,8 +8,10 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 import time
+import yaml
 from datetime import datetime, timedelta
 from ACP import LogManager
+from .meridian_flip_manager import MeridianFlipManager
 from lib.multi_target_plan_builder import MultiTargetPlanBuilder
 from lib.time_manager import TimeManager
 from lib.acp_mamager import ACPManager
@@ -30,11 +32,22 @@ class MultiTargetOrchestrator:
         self.time_manager = TimeManager(self.config.dryrun)
         self.acp_manager = ACPManager(self.config, self.log_manager)
         self.plan_builder = MultiTargetPlanBuilder(self.config)
+        self.meridian_manager = MeridianFlipManager(self.config.dryrun)
         
         # 状态跟踪
         self.current_target_index = 0
         self.observation_start_time = None
         self.target_completion_status = {}
+        
+        # 配置中天反转参数
+        if hasattr(self.config, 'meridian_flip'):
+            mf_config = self.config.meridian_flip
+            if 'stop_minutes_before' in mf_config:
+                self.meridian_manager.stop_minutes_before = int(mf_config['stop_minutes_before'])
+            if 'resume_minutes_after' in mf_config:
+                self.meridian_manager.resume_minutes_after = int(mf_config['resume_minutes_after'])
+            if 'safety_margin' in mf_config:
+                self.meridian_manager.safety_margin = int(mf_config['safety_margin'])
     
     def print_banner(self):
         """打印脚本信息横幅"""
@@ -174,6 +187,23 @@ class MultiTargetOrchestrator:
                     
                     print(status_msg)
                     self.log_manager.info(status_msg)
+                    
+                    # 检查中天反转
+                    if hasattr(target, 'ra') and hasattr(target, 'dec'):
+                        flip_info = self.meridian_manager.check_meridian_flip_needed(
+                            target['ra'], target['dec'], datetime.now()
+                        )
+                        if flip_info['wait_needed']:
+                            self.log_manager.info(f"需要中天反转等待: {flip_info['message']}")
+                            print(f"[{current_time}] 需要中天反转等待: {flip_info['message']}")
+                            # 等待中天反转
+                            wait_success = self.meridian_manager.wait_for_meridian_flip(
+                                target['ra'], target['dec'], datetime.now()
+                            )
+                            if not wait_success:
+                                self.log_manager.error("中天反转等待被中断")
+                                print(f"[{current_time}] 中天反转等待被中断")
+                                break
                     
                 except Exception as e:
                     error_msg = f"[{current_time}] {target_name} 状态检测失败: {str(e)}"
