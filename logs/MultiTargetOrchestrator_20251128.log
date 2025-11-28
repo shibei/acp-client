@@ -1,0 +1,6 @@
+2025-11-28 16:16:43 - MultiTargetOrchestrator - INFO - 正在初始化多目标观测协调器...
+2025-11-28 16:16:43 - MultiTargetOrchestrator - INFO - 多目标观测协调器初始化完成
+2025-11-28 16:16:43 - MultiTargetOrchestrator - INFO - 正在验证目标列表...
+2025-11-28 16:16:43 - MultiTargetOrchestrator - INFO - 目标 NGC 1499: 可观测性=True, 时间有效=True
+2025-11-28 16:16:43 - MultiTargetOrchestrator - INFO - 目标 M 31: 可观测性=False, 时间有效=True
+2025-11-28 16:16:43 - MultiTargetOrchestrator - INFO - 目标 M 33: 可观测性=False, 时间有效=True

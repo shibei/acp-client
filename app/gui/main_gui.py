@@ -17,6 +17,7 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from lib.new_multi_target_orchestrator import NewMultiTargetOrchestrator
+from .config_editor import ConfigEditorAdvanced
 
 
 class ACPClientGUI:
@@ -171,7 +172,52 @@ class ACPClientGUI:
         
         self.stop_button = ttk.Button(button_frame, text="停止观测",
                                       command=self.stop_observation, state=tk.DISABLED)
-        self.stop_button.pack(side=tk.LEFT)
+        self.stop_button.pack(side=tk.LEFT, padx=(0, 10))
+        
+        # 图形化配置编辑器按钮
+        ttk.Button(button_frame, text="图形化配置编辑器", 
+                  command=self.open_config_editor).pack(side=tk.LEFT)
+
+    def open_config_editor(self):
+        """打开图形化配置编辑器"""
+        try:
+            # 创建新窗口
+            config_window = tk.Toplevel(self.root)
+            config_window.title("图形化配置编辑器")
+            config_window.geometry("800x600")
+            
+            # 设置窗口图标（如果有的话）
+            try:
+                config_window.iconbitmap('app/gui/icon.ico')
+            except:
+                pass
+            
+            # 创建配置编辑器
+            config_editor = ConfigEditorAdvanced(config_window, self.config_file)
+            config_editor.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+            
+            # 添加保存回调
+            def on_config_saved():
+                """配置保存后的回调"""
+                # 重新加载配置
+                if config_editor.config_file:
+                    self.config_file = config_editor.config_file
+                    self.load_config_file()
+                    self.config_label.config(text=f"配置文件: {self.config_file}")
+                    self.log_message(f"配置已通过图形编辑器更新: {Path(self.config_file).name}")
+            
+            # 绑定保存事件
+            config_editor.bind('<<ConfigSaved>>', lambda e: on_config_saved())
+            
+            # 使窗口模态
+            config_window.transient(self.root)
+            config_window.grab_set()
+            
+            self.log_message("已打开图形化配置编辑器")
+            
+        except Exception as e:
+            messagebox.showerror("错误", f"无法打开配置编辑器: {e}")
+            self.log_message(f"打开配置编辑器失败: {e}", level="error")
         
         # 观测进度
         progress_frame = ttk.LabelFrame(control_frame, text="观测进度", padding="10")
