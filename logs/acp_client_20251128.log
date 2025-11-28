@@ -62,3 +62,51 @@
 2025-11-28 11:07:02 - AutoObserve_NGC1499 - WARNING - [2025-11-28 11:07:02] 状态检测失败: 无法访问 ACP 对象
 2025-11-28 11:07:13 - AutoObserve_NGC1499 - INFO - 状态监控被用户中断
 2025-11-28 11:07:13 - AutoObserve_NGC1499 - INFO - 自动观测脚本执行完成
+2025-11-28 11:11:36 - AutoObserve_NGC1499 - INFO - 成功连接到ACP服务器: http://27056t89i6.wicp.vip:1011
+2025-11-28 11:11:36 - AutoObserve_NGC1499 - INFO - 到达停止时间，准备停止当前计划
+2025-11-28 11:11:42 - AutoObserve_NGC1499 - INFO - 成功停止当前脚本
+2025-11-28 11:11:42 - AutoObserve_NGC1499 - INFO - 到达启动时间，开始执行NGC 1499观测任务
+2025-11-28 11:11:47 - AutoObserve_NGC1499 - INFO - 成功停止当前脚本
+2025-11-28 11:11:48 - AutoObserve_NGC1499 - ERROR - 成像计划启动失败
+2025-11-28 11:11:48 - AutoObserve_NGC1499 - INFO - 观测计划已启动
+2025-11-28 11:11:48 - AutoObserve_NGC1499 - INFO - 开始状态监控（每30秒刷新）
+2025-11-28 11:11:48 - AutoObserve_NGC1499 - WARNING - [2025-11-28 11:11:48] 状态检测失败: 无法访问 ACP 对象
+2025-11-28 11:11:52 - AutoObserve_NGC1499 - INFO - 状态监控被用户中断
+2025-11-28 11:11:52 - AutoObserve_NGC1499 - INFO - 自动观测脚本执行完成
+2025-11-28 11:12:17 - AutoObserve_NGC1499 - INFO - 成功连接到ACP服务器: http://27056t89i6.wicp.vip:1011
+2025-11-28 11:12:17 - AutoObserve_NGC1499 - INFO - 到达停止时间，准备停止当前计划
+2025-11-28 11:12:22 - AutoObserve_NGC1499 - INFO - 成功停止当前脚本
+2025-11-28 11:12:22 - AutoObserve_NGC1499 - INFO - 到达启动时间，开始执行NGC 1499观测任务
+2025-11-28 11:12:27 - AutoObserve_NGC1499 - INFO - 成功停止当前脚本
+2025-11-28 11:12:28 - AutoObserve_NGC1499 - ERROR - 成像计划启动失败
+2025-11-28 11:12:28 - AutoObserve_NGC1499 - INFO - 观测计划已启动
+2025-11-28 11:12:28 - AutoObserve_NGC1499 - INFO - 开始状态监控（每30秒刷新）
+2025-11-28 11:12:28 - AutoObserve_NGC1499 - WARNING - [2025-11-28 11:12:28] 状态检测失败: 无法访问 ACP 对象
+2025-11-28 11:12:31 - AutoObserve_NGC1499 - INFO - 状态监控被用户中断
+2025-11-28 11:12:31 - AutoObserve_NGC1499 - INFO - 自动观测脚本执行完成
+2025-11-28 11:12:36 - AutoObserve_NGC1499 - INFO - 成功连接到ACP服务器: http://27056t89i6.wicp.vip:1011
+2025-11-28 11:12:36 - AutoObserve_NGC1499 - INFO - 到达停止时间，准备停止当前计划
+2025-11-28 11:12:41 - AutoObserve_NGC1499 - INFO - 成功停止当前脚本
+2025-11-28 11:12:41 - AutoObserve_NGC1499 - INFO - 到达启动时间，开始执行NGC 1499观测任务
+2025-11-28 11:12:46 - AutoObserve_NGC1499 - INFO - 成功停止当前脚本
+2025-11-28 11:12:47 - AutoObserve_NGC1499 - ERROR - 成像计划启动失败
+2025-11-28 11:12:47 - AutoObserve_NGC1499 - INFO - 观测计划已启动
+2025-11-28 11:12:47 - AutoObserve_NGC1499 - INFO - 开始状态监控（每30秒刷新）
+2025-11-28 11:12:47 - AutoObserve_NGC1499 - WARNING - [2025-11-28 11:12:47] 状态检测失败: 无法访问 ACP 对象
+2025-11-28 11:13:17 - AutoObserve_NGC1499 - WARNING - [2025-11-28 11:13:17] 状态检测失败: 无法访问 ACP 对象
+2025-11-28 11:13:47 - AutoObserve_NGC1499 - WARNING - [2025-11-28 11:13:47] 状态检测失败: 无法访问 ACP 对象
+2025-11-28 11:14:17 - AutoObserve_NGC1499 - WARNING - [2025-11-28 11:14:17] 状态检测失败: 无法访问 ACP 对象
+2025-11-28 11:14:47 - AutoObserve_NGC1499 - WARNING - [2025-11-28 11:14:47] 状态检测失败: 无法访问 ACP 对象
+2025-11-28 11:15:17 - AutoObserve_NGC1499 - WARNING - [2025-11-28 11:15:17] 状态检测失败: 无法访问 ACP 对象
+2025-11-28 11:15:47 - AutoObserve_NGC1499 - WARNING - [2025-11-28 11:15:47] 状态检测失败: 无法访问 ACP 对象
+2025-11-28 11:16:17 - AutoObserve_NGC1499 - WARNING - [2025-11-28 11:16:17] 状态检测失败: 无法访问 ACP 对象
+2025-11-28 11:16:47 - AutoObserve_NGC1499 - WARNING - [2025-11-28 11:16:47] 状态检测失败: 无法访问 ACP 对象
+2025-11-28 11:17:17 - AutoObserve_NGC1499 - WARNING - [2025-11-28 11:17:17] 状态检测失败: 无法访问 ACP 对象
+2025-11-28 11:17:47 - AutoObserve_NGC1499 - WARNING - [2025-11-28 11:17:47] 状态检测失败: 无法访问 ACP 对象
+2025-11-28 11:18:17 - AutoObserve_NGC1499 - WARNING - [2025-11-28 11:18:17] 状态检测失败: 无法访问 ACP 对象
+2025-11-28 11:18:47 - AutoObserve_NGC1499 - WARNING - [2025-11-28 11:18:47] 状态检测失败: 无法访问 ACP 对象
+2025-11-28 11:19:17 - AutoObserve_NGC1499 - WARNING - [2025-11-28 11:19:17] 状态检测失败: 无法访问 ACP 对象
+2025-11-28 11:19:47 - AutoObserve_NGC1499 - WARNING - [2025-11-28 11:19:47] 状态检测失败: 无法访问 ACP 对象
+2025-11-28 11:20:17 - AutoObserve_NGC1499 - WARNING - [2025-11-28 11:20:17] 状态检测失败: 无法访问 ACP 对象
+2025-11-28 11:20:47 - AutoObserve_NGC1499 - WARNING - [2025-11-28 11:20:47] 状态检测失败: 无法访问 ACP 对象
+2025-11-28 11:21:17 - AutoObserve_NGC1499 - WARNING - [2025-11-28 11:21:17] 状态检测失败: 无法访问 ACP 对象
