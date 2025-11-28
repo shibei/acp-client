@@ -1,7 +1,9 @@
 import requests
 import time
 import logging
-from typing import Dict, List
+import re
+import urllib.parse
+from typing import Dict, List, Optional
 from urllib.parse import urljoin
 from dataclasses import dataclass
 import bs4 as bs
@@ -82,9 +84,19 @@ class ACPClient:
         }
         self.session.auth = (self.user, self.password)
         self.session.headers.update(headers)
-        html_str = self.session.get(self._make_url('/index.asp')).text
-        self.title = bs.BeautifulSoup(html_str, 'html.parser').find_all('title')[0].text
-        logger.info(f"登录成功，标题: {self.title}")
+        
+        try:
+            html_str = self.session.get(self._make_url('/index.asp'), timeout=self.timeout).text
+            soup = bs.BeautifulSoup(html_str, 'html.parser')
+            title_tags = soup.find_all('title')
+            if title_tags:
+                self.title = title_tags[0].text
+            else:
+                self.title = "ACP Observatory"
+            logger.info(f"登录成功，标题: {self.title}")
+        except Exception as e:
+            logger.warning(f"连接测试失败，但会话已配置: {e}")
+            self.title = "ACP Observatory"
     
     def _make_url(self, endpoint: str) -> str:
         """构建完整URL"""
@@ -120,41 +132,31 @@ class ACPClient:
         status = ObservatoryStatus()
         
         try:
-            # 简单的解析逻辑 - 实际实现需要更复杂的正则表达式匹配
-            lines = response_text.split(';')
-            for line in lines:
-                line = line.strip()
-                if line.startswith("_s('sm_local'"):
-                    status.local_time = self._extract_value(line)
-                elif line.startswith("_s('sm_utc'"):
-                    status.utc_time = self._extract_value(line)
-                elif line.startswith("_s('sm_obsStat'"):
-                    status.observatory_status = self._extract_value(line)
-                elif line.startswith("_s('sm_obsOwner'"):
-                    status.owner = self._extract_value(line)
-                elif line.startswith("_s('sm_scopeStat'"):
-                    status.telescope_status = self._extract_value(line)
-                elif line.startswith("_s('sm_camStat'"):
-                    status.camera_status = self._extract_value(line)
-                elif line.startswith("_s('sm_guideStat'"):
-                    status.guider_status = self._extract_value(line)
-                elif line.startswith("_s('sm_ra'"):
-                    status.current_ra = self._extract_value(line)
-                elif line.startswith("_s('sm_dec'"):
-                    status.current_dec = self._extract_value(line)
-                elif line.startswith("_s('sm_alt'"):
-                    status.current_alt = self._extract_value(line)
-                elif line.startswith("_s('sm_az'"):
-                    status.current_az = self._extract_value(line)
-                elif line.startswith("_s('sm_imgFilt'"):
-                    status.image_filter = self._extract_value(line)
-                elif line.startswith("_s('sm_imgTemp'"):
-                    status.image_temperature = self._extract_value(line)
-                elif line.startswith("_s('sm_plnSet'"):
-                    status.plan_progress = self._extract_value(line)
-                elif line.startswith("_s('sm_lastFWHM'"):
-                    status.last_fwhm = self._extract_value(line)
-                    
+            # 使用改进的状态解析方法
+            status_map = self.parse_encoded_status_text(response_text)
+            
+            # 映射到ObservatoryStatus对象
+            status.local_time = status_map.get('sm_local', '')
+            status.utc_time = status_map.get('sm_utc', '')
+            status.observatory_status = status_map.get('sm_obsStat', 'Offline')
+            status.owner = status_map.get('sm_obsOwner', 'Free')
+            status.telescope_status = status_map.get('sm_scopeStat', 'Offline')
+            status.camera_status = status_map.get('sm_camStat', 'Offline')
+            status.guider_status = status_map.get('sm_guideStat', 'Offline')
+            status.current_ra = status_map.get('sm_ra', '')
+            status.current_dec = status_map.get('sm_dec', '')
+            status.current_alt = status_map.get('sm_alt', '')
+            status.current_az = status_map.get('sm_az', '')
+            status.image_filter = status_map.get('sm_imgFilt', '')
+            status.image_temperature = status_map.get('sm_imgTemp', '')
+            status.plan_progress = status_map.get('sm_plnSet', '0/0')
+            status.last_fwhm = status_map.get('sm_lastFWHM', '')
+            
+            # 检查警告信息
+            warnings = self.get_observatory_warnings(response_text)
+            if warnings:
+                logger.warning(f"观测警告: {'; '.join(warnings)}")
+                
         except Exception as e:
             logger.warning(f"解析状态响应时出错: {e}")
             
@@ -198,6 +200,174 @@ class ACPClient:
     
     def _build_imaging_form_data(self, plan: ImagingPlan) -> Dict[str, str]:
         """构建成像计划表单数据"""
+        form_data = {
+            'Target': plan.target,
+            'visOnly': 'true',
+            'isOrb': 'dsky',
+            'RA': plan.ra,
+            'Dec': plan.dec,
+            'Dither': str(plan.dither),
+            'AF': 'yes' if plan.auto_focus else 'no',
+            'PerAF': 'yes' if plan.periodic_af_interval > 0 else 'no',
+            'PerAFInt': str(plan.periodic_af_interval)
+        }
+        
+        # 添加滤镜配置
+        for i, filter_config in enumerate(plan.filters, 1):
+            if i <= 16:  # ACP最多支持16个滤镜配置
+                form_data[f'ColorUse{i}'] = 'yes'
+                form_data[f'ColorCount{i}'] = str(filter_config.get('count', 1))
+                form_data[f'ColorFilter{i}'] = str(filter_config.get('filter', 0))
+                form_data[f'ColorExposure{i}'] = str(filter_config.get('exposure', plan.exposure_time))
+                form_data[f'ColorBinning{i}'] = str(filter_config.get('binning', 1))
+        
+        # 填充剩余的滤镜槽位为空值
+        for i in range(len(plan.filters) + 1, 17):
+            form_data[f'ColorUse{i}'] = ''
+            form_data[f'ColorCount{i}'] = ''
+            form_data[f'ColorFilter{i}'] = '0'
+            form_data[f'ColorExposure{i}'] = ''
+            form_data[f'ColorBinning{i}'] = '1'
+        
+        return form_data
+    
+    def parse_encoded_status_text(self, encoded_text: str) -> Dict[str, str]:
+        """
+        解析ACP编码的状态文本
+        例如: "@an19%3A44%3A15" -> "19:44:15"
+        """
+        status_map = {}
+        
+        # ACP状态编码映射
+        acp_decoders = {
+            '@an': lambda x: x,  # 普通文本
+            '@wn': lambda x: x.replace('Offline', '离线').replace('Online', '在线'),  # 警告/正常状态
+            '@in': lambda x: x.replace('---', '--'),  # 输入/数值
+            '@inn': lambda x: 'N/A' if x == 'n/a' else x  # 无效/不可用
+        }
+        
+        # 解析JavaScript状态设置函数
+        pattern = r"_s\('([^']+)'\s*,\s*'([^']+)'\)"
+        matches = re.findall(pattern, encoded_text)
+        
+        for key, value in matches:
+            # URL解码
+            try:
+                decoded_value = urllib.parse.unquote(value)
+            except:
+                decoded_value = value
+            
+            # 应用ACP解码器
+            for prefix, decoder in acp_decoders.items():
+                if decoded_value.startswith(prefix):
+                    decoded_value = decoder(decoded_value[len(prefix):])
+                    break
+            
+            status_map[key] = decoded_value
+        
+        return status_map
+    
+    def get_observatory_warnings(self, response_text: str) -> List[str]:
+        """
+        从响应文本中提取观测警告信息
+        """
+        warnings = []
+        
+        # 查找警告标记
+        if 'warning' in response_text.lower():
+            # 提取警告消息
+            warning_pattern = r'----\s*\n\[([^\]]+)\]([^\n]+)\n----'
+            matches = re.findall(warning_pattern, response_text)
+            
+            for match in matches:
+                warning_type, warning_msg = match
+                warnings.append(f"[{warning_type}]{warning_msg.strip()}")
+        
+        return warnings
+    
+    def wait_for_observatory_ready(self, timeout: int = 300, check_interval: int = 5) -> bool:
+        """
+        等待天文台准备就绪
+        """
+        start_time = time.time()
+        
+        while time.time() - start_time < timeout:
+            try:
+                status = self.get_system_status()
+                
+                # 检查天文台是否在线
+                if status.observatory_status.lower() == 'online':
+                    logger.info("天文台已准备就绪")
+                    return True
+                
+                logger.info(f"等待天文台准备就绪... 当前状态: {status.observatory_status}")
+                time.sleep(check_interval)
+                
+            except Exception as e:
+                logger.error(f"检查天文台状态时出错: {e}")
+                time.sleep(check_interval)
+        
+        logger.error("等待天文台准备就绪超时")
+        return False
+    
+    def create_simple_imaging_plan(self, target: str, ra: str, dec: str, 
+                                 filter_configs: List[Dict], exposure_time: int = 30,
+                                 dither: int = 5, auto_focus: bool = True) -> ImagingPlan:
+        """
+        创建简单的成像计划
+        """
+        plan = ImagingPlan(
+            target=target,
+            ra=ra,
+            dec=dec,
+            filters=filter_configs,
+            exposure_time=exposure_time,
+            dither=dither,
+            auto_focus=auto_focus
+        )
+        
+        return plan
+    
+    def get_current_status_summary(self) -> str:
+        """
+        获取当前状态的简要摘要
+        """
+        try:
+            status = self.get_system_status()
+            
+            summary = f"""
+天文台状态摘要:
+================
+观测站状态: {status.observatory_status}
+望远镜状态: {status.telescope_status}
+相机状态: {status.camera_status}
+导星状态: {status.guider_status}
+当前坐标: RA {status.current_ra}, Dec {status.current_dec}
+高度/方位: Alt {status.current_alt}, Az {status.current_az}
+当前滤镜: {status.image_filter}
+计划进度: {status.plan_progress}
+最后FWHM: {status.last_fwhm}
+            """.strip()
+            
+            return summary
+            
+        except Exception as e:
+            # 如果get_system_status失败，提供一个基础状态
+            return f"""
+天文台状态摘要:
+================
+观测站状态: Unknown
+望远镜状态: Unknown
+相机状态: Unknown
+导星状态: Unknown
+当前坐标: RA --:--:--, Dec --°--'--"
+高度/方位: Alt --.--°, Az --.--°
+当前滤镜: N/A
+计划进度: 0/0
+最后FWHM: N/A
+
+注意: {str(e)}
+            """.strip()
         form_data = {
             'Target': plan.target,
             'visOnly': 'true',
