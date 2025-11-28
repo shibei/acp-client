@@ -1,0 +1,36 @@
+
+schedule:
+  stop_time: '2025-11-29 02:00:00'
+
+acp_server:
+  url: 'http://test.com'
+  username: 'test'
+  password: 'test'
+
+targets:
+  - name: '测试目标1'
+    ra: '04:01:07.51'
+    dec: '+36:31:11.9'
+    start_time: '2025-11-28 13:30:00'
+    priority: 1
+    filters:
+      - filter_id: 4
+        name: 'H-alpha'
+        exposure: 60
+        count: 2
+        binning: 1
+
+meridian_flip:
+  stop_minutes_before: 10
+  resume_minutes_after: 10
+  safety_margin: 5
+
+observatory:
+  latitude: 39.9
+  longitude: 116.4
+
+global_settings:
+  dither: 5
+  auto_focus: true
+  af_interval: 120
+  dryrun: true

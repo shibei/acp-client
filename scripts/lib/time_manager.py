@@ -12,7 +12,7 @@ class TimeManager:
         
         if self.dryrun:
             print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] 跳过等待，目标时间: {target_time.strftime('%Y-%m-%d %H:%M:%S')}")
-            return
+            return True
         
         while True:
             now = datetime.now()
@@ -30,3 +30,4 @@ class TimeManager:
             time.sleep(1)
         
         print(f"\n[{datetime.now().strftime('%H:%M:%S')}] ⏰ 到达{action_name}时间")
+        return True

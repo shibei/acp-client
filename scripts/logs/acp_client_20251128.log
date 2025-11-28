@@ -1,0 +1,45 @@
+2025-11-28 13:19:58 - MultiTarget_Observe - INFO - 成功连接到ACP服务器: http://27056t89i6.wicp.vip:1011
+2025-11-28 13:21:43 - MultiTarget_Observe - INFO - 成功连接到ACP服务器: http://27056t89i6.wicp.vip:1011
+2025-11-28 13:25:00 - MultiTarget_Observe - INFO - 多目标观测脚本执行完成
+2025-11-28 13:30:07 - MultiTarget_Observe - INFO - 成功连接到ACP服务器: http://27056t89i6.wicp.vip:1011
+2025-11-28 13:30:07 - MultiTarget_Observe - INFO - 开始执行 NGC 1499 观测任务
+2025-11-28 13:30:12 - MultiTarget_Observe - INFO - 成功停止当前脚本
+2025-11-28 13:30:13 - MultiTarget_Observe - ERROR - 成像计划启动失败
+2025-11-28 13:30:13 - MultiTarget_Observe - ERROR - NGC 1499 观测计划启动失败
+2025-11-28 13:30:13 - MultiTarget_Observe - INFO - 开始执行 M 31 观测任务
+2025-11-28 13:30:18 - MultiTarget_Observe - INFO - 成功停止当前脚本
+2025-11-28 13:30:19 - MultiTarget_Observe - ERROR - 成像计划启动失败
+2025-11-28 13:30:19 - MultiTarget_Observe - ERROR - M 31 观测计划启动失败
+2025-11-28 13:30:19 - MultiTarget_Observe - INFO - 开始执行 M 33 观测任务
+2025-11-28 13:30:24 - MultiTarget_Observe - INFO - 成功停止当前脚本
+2025-11-28 13:30:25 - MultiTarget_Observe - ERROR - 成像计划启动失败
+2025-11-28 13:30:25 - MultiTarget_Observe - ERROR - M 33 观测计划启动失败
+2025-11-28 13:30:25 - MultiTarget_Observe - INFO - 多目标观测脚本执行完成
+2025-11-28 13:31:47 - MultiTarget_Observe - INFO - 成功连接到ACP服务器: http://27056t89i6.wicp.vip:1011
+2025-11-28 13:31:47 - MultiTarget_Observe - INFO - 开始执行 NGC 1499 观测任务
+2025-11-28 13:31:52 - MultiTarget_Observe - INFO - 成功停止当前脚本
+2025-11-28 13:31:53 - MultiTarget_Observe - ERROR - 成像计划启动失败
+2025-11-28 13:31:53 - MultiTarget_Observe - ERROR - NGC 1499 观测计划启动失败
+2025-11-28 13:31:53 - MultiTarget_Observe - INFO - 开始执行 M 31 观测任务
+2025-11-28 13:31:58 - MultiTarget_Observe - INFO - 成功停止当前脚本
+2025-11-28 13:31:59 - MultiTarget_Observe - ERROR - 成像计划启动失败
+2025-11-28 13:31:59 - MultiTarget_Observe - ERROR - M 31 观测计划启动失败
+2025-11-28 13:31:59 - MultiTarget_Observe - INFO - 开始执行 M 33 观测任务
+2025-11-28 13:32:04 - MultiTarget_Observe - INFO - 成功停止当前脚本
+2025-11-28 13:32:05 - MultiTarget_Observe - ERROR - 成像计划启动失败
+2025-11-28 13:32:05 - MultiTarget_Observe - ERROR - M 33 观测计划启动失败
+2025-11-28 13:32:05 - MultiTarget_Observe - INFO - 多目标观测脚本执行完成
+2025-11-28 13:32:39 - MultiTarget_Observe - INFO - 成功连接到ACP服务器: http://27056t89i6.wicp.vip:1011
+2025-11-28 13:34:00 - MultiTarget_Observe - INFO - 开始执行 NGC 1499 观测任务
+2025-11-28 13:34:05 - MultiTarget_Observe - INFO - 成功停止当前脚本
+2025-11-28 13:34:06 - MultiTarget_Observe - ERROR - 成像计划启动失败
+2025-11-28 13:34:06 - MultiTarget_Observe - ERROR - NGC 1499 观测计划启动失败
+2025-11-28 13:35:00 - MultiTarget_Observe - INFO - 开始执行 M 31 观测任务
+2025-11-28 13:35:06 - MultiTarget_Observe - INFO - 成功停止当前脚本
+2025-11-28 13:35:06 - MultiTarget_Observe - ERROR - 成像计划启动失败
+2025-11-28 13:35:06 - MultiTarget_Observe - ERROR - M 31 观测计划启动失败
+2025-11-28 13:36:00 - MultiTarget_Observe - INFO - 开始执行 M 33 观测任务
+2025-11-28 13:36:05 - MultiTarget_Observe - INFO - 成功停止当前脚本
+2025-11-28 13:36:06 - MultiTarget_Observe - ERROR - 成像计划启动失败
+2025-11-28 13:36:06 - MultiTarget_Observe - ERROR - M 33 观测计划启动失败
+2025-11-28 13:36:06 - MultiTarget_Observe - INFO - 多目标观测脚本执行完成

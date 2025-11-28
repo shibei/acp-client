@@ -15,7 +15,7 @@ targets:
   - name: 'NGC 1499'
     ra: '04:01:07.51'
     dec: '+36:31:11.9'
-    start_time: '2025-11-29 20:00:00'
+    start_time: '2025-11-28 13:34:00'
     priority: 1
     filters:
       - filter_id: 4
@@ -37,7 +37,7 @@ targets:
   - name: 'M 31'
     ra: '00:42:44.33'
     dec: '+41:16:07.5'
-    start_time: '2025-11-29 22:30:00'
+    start_time: '2025-11-28 13:35:00'
     priority: 2
     filters:
       - filter_id: 1
@@ -64,7 +64,7 @@ targets:
   - name: 'M 33'
     ra: '01:33:50.89'
     dec: '+30:39:35.8'
-    start_time: '2025-11-30 01:00:00'
+    start_time: '2025-11-28 13:36:00'
     priority: 3
     filters:
       - filter_id: 4
@@ -77,6 +77,17 @@ targets:
         exposure: 900
         count: 12
         binning: 1
+
+# 中天反转配置
+meridian_flip:
+  stop_minutes_before: 10  # 中天前停止观测的时间（分钟）
+  resume_minutes_after: 10  # 中天后恢复观测的时间（分钟）
+  safety_margin: 5  # 安全边距（分钟）
+
+# 观测站位置（用于计算中天时间）
+observatory:
+  latitude: 39.9  # 观测站纬度（度）
+  longitude: 116.4  # 观测站经度（度）
 
 # 全局成像参数
 global_settings:
