@@ -29,6 +29,9 @@ class ObservationConfig:
         self.acp_user = "share"
         self.acp_password = "1681"
         
+        # 运行模式
+        self.dryrun = False  # True=仅模拟运行，False=实际执行
+        
         # 目标配置
         self.target_name = "NGC 1499"
         self.target_ra = "04:01:07.51"
@@ -80,6 +83,8 @@ def print_banner(config):
     """打印脚本信息横幅"""
     print("="*70)
     print("NGC 1499 自动观测脚本")
+    if config.dryrun:
+        print("*** DRYRUN 模式 - 仅模拟运行，不实际执行 ***")
     print("="*70)
     print(f"目标名称: {config.target_name}")
     print(f"坐标: RA {config.target_ra}, DEC {config.target_dec}")
@@ -99,6 +104,12 @@ def print_banner(config):
 
 def connect_to_acp(config, log_manager):
     """连接到ACP服务器"""
+    if config.dryrun:
+        print(f"\n[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] 模拟连接到ACP服务器...")
+        print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] ✓ 模拟连接成功")
+        log_manager.info(f"[DRYRUN] 模拟连接到ACP服务器: {config.acp_url}")
+        return "DRYRUN_CLIENT"  # 返回模拟客户端标识
+    
     try:
         print(f"\n[{datetime.now().strftime('%H:%M:%S')}] 正在连接到ACP服务器...")
         client = ACPClient(config.acp_url, config.acp_user, config.acp_password)
@@ -111,9 +122,13 @@ def connect_to_acp(config, log_manager):
         return None
 
 
-def wait_until(target_time, action_name="执行"):
+def wait_until(target_time, action_name="执行", dryrun=False):
     """等待到指定时间"""
-    print(f"\n[{datetime.now().strftime('%H:%M:%S')}] 等待到{action_name}时间...")
+    print(f"\n[{datetime.now().strftime('%H:%M:%S')}] {'[DRYRUN] ' if dryrun else ''}等待到{action_name}时间...")
+    
+    if dryrun:
+        print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] 跳过等待，目标时间: {target_time.strftime('%Y-%m-%d %H:%M:%S')}")
+        return
     
     while True:
         now = datetime.now()
@@ -134,8 +149,14 @@ def wait_until(target_time, action_name="执行"):
     print(f"\n[{datetime.now().strftime('%H:%M:%S')}] ⏰ 到达{action_name}时间")
 
 
-def stop_current_script(client, log_manager, wait_seconds=5):
+def stop_current_script(client, log_manager, wait_seconds=5, dryrun=False):
     """停止当前运行的脚本"""
+    if dryrun:
+        print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] 模拟停止当前脚本...")
+        print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] ✓ 模拟停止成功")
+        log_manager.info("[DRYRUN] 模拟停止当前脚本")
+        return True
+    
     try:
         print(f"[{datetime.now().strftime('%H:%M:%S')}] 正在停止当前脚本...")
         success = client.stop_script()
@@ -157,7 +178,7 @@ def stop_current_script(client, log_manager, wait_seconds=5):
 
 def create_imaging_plan(config):
     """创建成像计划"""
-    print(f"\n[{datetime.now().strftime('%H:%M:%S')}] 正在创建成像计划...")
+    print(f"\n[{datetime.now().strftime('%H:%M:%S')}] {'[DRYRUN] ' if config.dryrun else ''}正在创建成像计划...")
     
     # 配置滤镜列表
     filters = []
@@ -197,6 +218,22 @@ def create_imaging_plan(config):
 
 def start_imaging(client, plan, config, log_manager):
     """启动成像计划"""
+    if config.dryrun:
+        print(f"\n[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] 模拟启动成像计划...")
+        estimated_finish = datetime.now() + timedelta(hours=config.get_total_hours())
+        print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] ✓ 模拟启动成功！")
+        print(f"\n{'='*70}")
+        print("[DRYRUN] 模拟任务已启动！")
+        print(f"目标: {config.target_name}")
+        print(f"总图像数: {config.get_total_images()}张")
+        print(f"预计完成时间: {estimated_finish.strftime('%Y-%m-%d %H:%M:%S')}")
+        print(f"{'='*70}")
+        
+        filter_summary = ", ".join([f"{f.get('name', f'Filter{f['filter_id']}')}:{f['count']}x{f['exposure']}s" 
+                                   for f in config.filters])
+        log_manager.info(f"[DRYRUN] 模拟启动{config.target_name}成像计划: {filter_summary}")
+        return True
+    
     try:
         print(f"\n[{datetime.now().strftime('%H:%M:%S')}] 正在启动成像计划...")
         success = client.start_imaging_plan(plan)
@@ -233,6 +270,11 @@ def main():
     # 初始化日志
     log_manager = LogManager('AutoObserve_NGC1499')
     
+    if config.dryrun:
+        log_manager.info("="*50)
+        log_manager.info("启动 DRYRUN 模式 - 仅模拟运行")
+        log_manager.info("="*50)
+    
     # 打印信息横幅
     print_banner(config)
     
@@ -243,23 +285,23 @@ def main():
     
     # 如果设置了停止时间，先等待并停止当前计划
     if config.stop_time:
-        wait_until(config.stop_time, "停止")
-        log_manager.info("到达停止时间，准备停止当前计划")
-        stop_current_script(client, log_manager)
+        wait_until(config.stop_time, "停止", dryrun=config.dryrun)
+        log_manager.info(f"{'[DRYRUN] ' if config.dryrun else ''}到达停止时间，准备停止当前计划")
+        stop_current_script(client, log_manager, dryrun=config.dryrun)
     
     # 等待到指定启动时间
-    wait_until(config.start_time, "启动")
-    log_manager.info(f"到达启动时间，开始执行{config.target_name}观测任务")
+    wait_until(config.start_time, "启动", dryrun=config.dryrun)
+    log_manager.info(f"{'[DRYRUN] ' if config.dryrun else ''}到达启动时间，开始执行{config.target_name}观测任务")
     
     # 启动前再次停止脚本（确保干净启动）
-    stop_current_script(client, log_manager, wait_seconds=5)
+    stop_current_script(client, log_manager, wait_seconds=5, dryrun=config.dryrun)
     
     # 创建并启动成像计划
     plan = create_imaging_plan(config)
     start_imaging(client, plan, config, log_manager)
     
-    print(f"\n[{datetime.now().strftime('%H:%M:%S')}] 脚本执行完成")
-    log_manager.info("自动观测脚本执行完成")
+    print(f"\n[{datetime.now().strftime('%H:%M:%S')}] {'[DRYRUN] ' if config.dryrun else ''}脚本执行完成")
+    log_manager.info(f"{'[DRYRUN] ' if config.dryrun else ''}自动观测脚本执行完成")
 
 
 if __name__ == "__main__":
