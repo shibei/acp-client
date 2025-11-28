@@ -15,7 +15,7 @@ targets:
   - name: 'NGC 1499'
     ra: '04:01:07.51'
     dec: '+36:31:11.9'
-    start_time: '2025-11-28 13:34:00'
+    start_time: '2025-11-28 14:17:00'
     priority: 1
     filters:
       - filter_id: 4
@@ -37,7 +37,7 @@ targets:
   - name: 'M 31'
     ra: '00:42:44.33'
     dec: '+41:16:07.5'
-    start_time: '2025-11-28 13:35:00'
+    start_time: '2025-11-28 14:18:00'
     priority: 2
     filters:
       - filter_id: 1
@@ -64,7 +64,7 @@ targets:
   - name: 'M 33'
     ra: '01:33:50.89'
     dec: '+30:39:35.8'
-    start_time: '2025-11-28 13:36:00'
+    start_time: '2025-11-28 14:19:00'
     priority: 3
     filters:
       - filter_id: 4
