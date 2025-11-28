@@ -1,0 +1,97 @@
+# 多目标自动观测配置文件
+# 注意：时间格式为 'YYYY-MM-DD HH:MM:SS'
+
+schedule:
+  # 全局停止时间（可选，如不需要请删除或注释此行）
+  stop_time: '2025-11-29 02:00:00'
+
+acp_server:
+  url: 'http://27056t89i6.wicp.vip:1011'
+  username: 'share'
+  password: '1681'
+
+# 多目标观测计划
+targets:
+  - name: 'NGC 1499'
+    ra: '04:01:07.51'
+    dec: '+36:31:11.9'
+    start_time: '2025-11-28 14:17:00'
+    priority: 1
+    filters:
+      - filter_id: 4
+        name: 'H-alpha'
+        exposure: 600
+        count: 20
+        binning: 1
+      - filter_id: 6
+        name: 'OIII'
+        exposure: 600
+        count: 20
+        binning: 1
+      - filter_id: 5
+        name: 'SII'
+        exposure: 600
+        count: 20
+        binning: 1
+
+  - name: 'M 31'
+    ra: '00:42:44.33'
+    dec: '+41:16:07.5'
+    start_time: '2025-11-28 14:18:00'
+    priority: 2
+    filters:
+      - filter_id: 1
+        name: 'R'
+        exposure: 300
+        count: 15
+        binning: 1
+      - filter_id: 2
+        name: 'G'
+        exposure: 300
+        count: 15
+        binning: 1
+      - filter_id: 3
+        name: 'B'
+        exposure: 300
+        count: 15
+        binning: 1
+      - filter_id: 0
+        name: 'L'
+        exposure: 300
+        count: 20
+        binning: 1
+
+  - name: 'M 33'
+    ra: '01:33:50.89'
+    dec: '+30:39:35.8'
+    start_time: '2025-11-28 14:19:00'
+    priority: 3
+    filters:
+      - filter_id: 4
+        name: 'H-alpha'
+        exposure: 900
+        count: 12
+        binning: 1
+      - filter_id: 6
+        name: 'OIII'
+        exposure: 900
+        count: 12
+        binning: 1
+
+# 中天反转配置
+meridian_flip:
+  stop_minutes_before: 10  # 中天前停止观测的时间（分钟）
+  resume_minutes_after: 10  # 中天后恢复观测的时间（分钟）
+  safety_margin: 5  # 安全边距（分钟）
+
+# 观测站位置（用于计算中天时间）
+observatory:
+  latitude: 39.9  # 观测站纬度（度）
+  longitude: 116.4  # 观测站经度（度）
+
+# 全局成像参数
+global_settings:
+  dither: 5
+  auto_focus: true
+  af_interval: 120
+  dryrun: false
