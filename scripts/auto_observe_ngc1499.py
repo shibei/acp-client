@@ -4,9 +4,9 @@
 
 目标：NGC 1499
 坐标：RA 04:01:07.51, DEC +36:31:11.9
-滤镜：H-alpha
-曝光：600秒
-数量：30张
+滤镜：支持多滤镜配置
+曝光：每个滤镜可单独配置
+数量：每个滤镜可单独配置
 停止时间：可选，如果设置则先停止当前计划
 启动时间：2025-11-20 02:30:00
 """
@@ -34,11 +34,32 @@ class ObservationConfig:
         self.target_ra = "04:01:07.51"
         self.target_dec = "+36:31:11.9"
         
-        # 滤镜配置
-        self.filter_id = 4  # H-alpha
-        self.exposure_time = 600  # 秒
-        self.image_count = 30
-        self.binning = 1
+        # 多滤镜配置
+        # 格式：[{'filter_id': ID, 'name': '名称', 'exposure': 秒, 'count': 数量, 'binning': 合并}]
+        self.filters = [
+            {
+                'filter_id': 4,
+                'name': 'H-alpha',
+                'exposure': 600,
+                'count': 30,
+                'binning': 1
+            },
+            # 可以添加更多滤镜，例如：
+            # {
+            #     'filter_id': 5,
+            #     'name': 'OIII',
+            #     'exposure': 600,
+            #     'count': 20,
+            #     'binning': 1
+            # },
+            # {
+            #     'filter_id': 6,
+            #     'name': 'SII',
+            #     'exposure': 600,
+            #     'count': 20,
+            #     'binning': 1
+            # }
+        ]
         
         # 其他参数
         self.dither = 5  # 像素
@@ -47,7 +68,12 @@ class ObservationConfig:
     
     def get_total_hours(self):
         """计算预计总时间（小时）"""
-        return self.exposure_time * self.image_count / 3600
+        total_seconds = sum(f['exposure'] * f['count'] for f in self.filters)
+        return total_seconds / 3600
+    
+    def get_total_images(self):
+        """计算总图像数量"""
+        return sum(f['count'] for f in self.filters)
 
 
 def print_banner(config):
@@ -57,8 +83,13 @@ def print_banner(config):
     print("="*70)
     print(f"目标名称: {config.target_name}")
     print(f"坐标: RA {config.target_ra}, DEC {config.target_dec}")
-    print(f"滤镜: H-alpha (ID: {config.filter_id})")
-    print(f"曝光: {config.exposure_time}秒 x {config.image_count}张")
+    print(f"\n滤镜配置 ({len(config.filters)}个滤镜):")
+    for i, filter_cfg in enumerate(config.filters, 1):
+        filter_name = filter_cfg.get('name', f"Filter {filter_cfg['filter_id']}")
+        print(f"  {i}. {filter_name} (ID: {filter_cfg['filter_id']})")
+        print(f"     曝光: {filter_cfg['exposure']}秒 x {filter_cfg['count']}张")
+        print(f"     Binning: {filter_cfg['binning']}x{filter_cfg['binning']}")
+    print(f"\n总图像数: {config.get_total_images()}张")
     print(f"预计总时间: {config.get_total_hours():.1f}小时")
     if config.stop_time:
         print(f"计划停止时间: {config.stop_time.strftime('%Y-%m-%d %H:%M:%S')}")
@@ -128,13 +159,15 @@ def create_imaging_plan(config):
     """创建成像计划"""
     print(f"\n[{datetime.now().strftime('%H:%M:%S')}] 正在创建成像计划...")
     
-    # 配置滤镜
-    filters = [{
-        'filter_id': config.filter_id,
-        'count': config.image_count,
-        'exposure': config.exposure_time,
-        'binning': config.binning
-    }]
+    # 配置滤镜列表
+    filters = []
+    for filter_cfg in config.filters:
+        filters.append({
+            'filter_id': filter_cfg['filter_id'],
+            'count': filter_cfg['count'],
+            'exposure': filter_cfg['exposure'],
+            'binning': filter_cfg.get('binning', 1)
+        })
     
     # 创建成像计划
     plan = ImagingPlan(
@@ -150,9 +183,11 @@ def create_imaging_plan(config):
     print(f"[{datetime.now().strftime('%H:%M:%S')}] 成像计划详情:")
     print(f"  - 目标: {config.target_name}")
     print(f"  - 坐标: {config.target_ra} / {config.target_dec}")
-    print(f"  - 滤镜ID: {config.filter_id}")
-    print(f"  - 曝光: {config.exposure_time}秒")
-    print(f"  - 数量: {config.image_count}张")
+    print(f"  - 滤镜数量: {len(config.filters)}")
+    for i, filter_cfg in enumerate(config.filters, 1):
+        filter_name = filter_cfg.get('name', f"Filter {filter_cfg['filter_id']}")
+        print(f"    {i}. {filter_name}: {filter_cfg['exposure']}秒 x {filter_cfg['count']}张")
+    print(f"  - 总图像: {config.get_total_images()}张")
     print(f"  - 抖动: {config.dither}像素")
     print(f"  - 自动对焦: {'是' if config.auto_focus else '否'}")
     print(f"  - 对焦间隔: {config.af_interval}分钟")
@@ -172,9 +207,13 @@ def start_imaging(client, plan, config, log_manager):
             print(f"\n{'='*70}")
             print("任务已启动！")
             print(f"目标: {config.target_name}")
+            print(f"总图像数: {config.get_total_images()}张")
             print(f"预计完成时间: {estimated_finish.strftime('%Y-%m-%d %H:%M:%S')}")
             print(f"{'='*70}")
-            log_manager.info(f"成功启动{config.target_name}成像计划: {config.image_count}张 x {config.exposure_time}秒")
+            
+            filter_summary = ", ".join([f"{f.get('name', f'Filter{f['filter_id']}')}:{f['count']}x{f['exposure']}s" 
+                                       for f in config.filters])
+            log_manager.info(f"成功启动{config.target_name}成像计划: {filter_summary}")
         else:
             print(f"[{datetime.now().strftime('%H:%M:%S')}] ✗ 成像计划启动失败！")
             log_manager.error("成像计划启动失败")
