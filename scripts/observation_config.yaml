@@ -1,0 +1,34 @@
+# 自动观测配置文件
+# 注意：时间格式为 'YYYY-MM-DD HH:MM:SS'
+
+schedule:
+  # 停止当前计划的时间（可选，如不需要请删除或注释此行）
+  stop_time: '2025-11-19 23:30:00'
+  # 启动新计划的时间（必填）
+  start_time: '2025-11-19 23:39:00'
+
+acp_server:
+  url: 'http://27056t89i6.wicp.vip:1011'
+  username: 'share'
+  password: '1681'
+
+target:
+  name: 'NGC 1499'
+  ra: '04:01:07.51'
+  dec: '+36:31:11.9'
+
+imaging:
+  # 滤镜ID (通常 0=L, 1=R, 2=G, 3=B, 4=H-alpha, 5=O-III, 6=S-II)
+  filter_id: 4
+  # 曝光时间（秒）
+  exposure_time: 600
+  # 图像数量
+  image_count: 30
+  # 像素合并
+  binning: 1
+  # 抖动（像素）
+  dither: 5
+  # 自动对焦
+  auto_focus: true
+  # 对焦间隔（分钟）
+  af_interval: 120
