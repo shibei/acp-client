@@ -1,0 +1,32 @@
+2025-11-28 10:42:17 - AutoObserve_NGC1499 - INFO - 成功连接到ACP服务器: http://27056t89i6.wicp.vip:1011
+2025-11-28 10:43:07 - AutoObserve_NGC1499 - INFO - ==================================================
+2025-11-28 10:43:07 - AutoObserve_NGC1499 - INFO - 启动 DRYRUN 模式 - 仅模拟运行
+2025-11-28 10:43:07 - AutoObserve_NGC1499 - INFO - ==================================================
+2025-11-28 10:43:07 - AutoObserve_NGC1499 - INFO - [DRYRUN] 模拟连接到ACP服务器: http://27056t89i6.wicp.vip:1011
+2025-11-28 10:43:07 - AutoObserve_NGC1499 - INFO - [DRYRUN] 到达停止时间，准备停止当前计划
+2025-11-28 10:43:07 - AutoObserve_NGC1499 - INFO - [DRYRUN] 模拟停止当前脚本
+2025-11-28 10:43:07 - AutoObserve_NGC1499 - INFO - [DRYRUN] 到达启动时间，开始执行NGC 1499观测任务
+2025-11-28 10:43:07 - AutoObserve_NGC1499 - INFO - [DRYRUN] 模拟停止当前脚本
+2025-11-28 10:43:07 - AutoObserve_NGC1499 - INFO - [DRYRUN] 模拟启动NGC 1499成像计划: H-alpha:30x600s
+2025-11-28 10:43:07 - AutoObserve_NGC1499 - INFO - [DRYRUN] 自动观测脚本执行完成
+2025-11-28 10:44:47 - AutoObserve_NGC1499 - INFO - 成功连接到ACP服务器: http://27056t89i6.wicp.vip:1011
+2025-11-28 10:45:00 - AutoObserve_NGC1499 - INFO - 到达停止时间，准备停止当前计划
+2025-11-28 10:45:05 - AutoObserve_NGC1499 - INFO - 成功停止当前脚本
+2025-11-28 10:46:00 - AutoObserve_NGC1499 - INFO - 到达启动时间，开始执行NGC 1499观测任务
+2025-11-28 10:46:06 - AutoObserve_NGC1499 - INFO - 成功停止当前脚本
+2025-11-28 10:46:07 - AutoObserve_NGC1499 - ERROR - 成像计划启动失败
+2025-11-28 10:46:07 - AutoObserve_NGC1499 - INFO - 自动观测脚本执行完成
+2025-11-28 10:50:25 - AutoObserve_NGC1499 - INFO - 成功连接到ACP服务器: http://27056t89i6.wicp.vip:1011
+2025-11-28 10:50:25 - AutoObserve_NGC1499 - INFO - 到达停止时间，准备停止当前计划
+2025-11-28 10:50:30 - AutoObserve_NGC1499 - INFO - 成功停止当前脚本
+2025-11-28 10:50:30 - AutoObserve_NGC1499 - INFO - 到达启动时间，开始执行NGC 1499观测任务
+2025-11-28 10:50:36 - AutoObserve_NGC1499 - INFO - 成功停止当前脚本
+2025-11-28 10:50:36 - AutoObserve_NGC1499 - ERROR - 成像计划启动失败
+2025-11-28 10:50:36 - AutoObserve_NGC1499 - INFO - 自动观测脚本执行完成
+2025-11-28 10:51:18 - AutoObserve_NGC1499 - INFO - 成功连接到ACP服务器: http://27056t89i6.wicp.vip:1011
+2025-11-28 10:51:18 - AutoObserve_NGC1499 - INFO - 到达停止时间，准备停止当前计划
+2025-11-28 10:51:23 - AutoObserve_NGC1499 - INFO - 成功停止当前脚本
+2025-11-28 10:51:23 - AutoObserve_NGC1499 - INFO - 到达启动时间，开始执行NGC 1499观测任务
+2025-11-28 10:51:28 - AutoObserve_NGC1499 - INFO - 成功停止当前脚本
+2025-11-28 10:51:29 - AutoObserve_NGC1499 - ERROR - 成像计划启动失败
+2025-11-28 10:51:29 - AutoObserve_NGC1499 - INFO - 自动观测脚本执行完成
