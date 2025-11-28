@@ -217,7 +217,7 @@ class ACPClient:
             if i <= 16:  # ACP最多支持16个滤镜配置
                 form_data[f'ColorUse{i}'] = 'yes'
                 form_data[f'ColorCount{i}'] = str(filter_config.get('count', 1))
-                form_data[f'ColorFilter{i}'] = str(filter_config.get('filter', 0))
+                form_data[f'ColorFilter{i}'] = str(filter_config.get('filter_id', 0))
                 form_data[f'ColorExposure{i}'] = str(filter_config.get('exposure', plan.exposure_time))
                 form_data[f'ColorBinning{i}'] = str(filter_config.get('binning', 1))
         

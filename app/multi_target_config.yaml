@@ -6,7 +6,7 @@ schedule:
   stop_time: '2025-11-29 07:00:00'
 
 acp_server:
-  url: 'http://27056t89i6.wicp.vip:1011'
+  url: 'http://270q56u899.qicp.vip:4141'
   username: 'share'
   password: '1681'
 
@@ -15,7 +15,7 @@ targets:
   - name: 'IC 1871'
     ra: '02:53:19.50'
     dec: '60:26:59.1'
-    start_time: '2025-11-28 21:53:00'
+    start_time: '2025-11-28 23:20:00'
     priority: 1
     meridian_time: '23:41:00'  # 可选：手动指定中天时间（格式 HH:MM:SS）
     filters:
