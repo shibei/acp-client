@@ -10,7 +10,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
 import time
 from datetime import datetime
 from typing import Optional, Dict, Any
-from ACP import ACPClient
+from .acp_client import ACPClient
 
 
 class ACPConnectionManager:

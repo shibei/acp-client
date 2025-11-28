@@ -89,7 +89,7 @@ class ACPImagingManager:
                 return False
 
             # 将字典转换为ImagingPlan对象
-            from ACP.ACPlib import ImagingPlan
+            from .acp_client import ImagingPlan
             imaging_plan = ImagingPlan(
                 target=plan['target_name'],
                 ra=plan['ra'],

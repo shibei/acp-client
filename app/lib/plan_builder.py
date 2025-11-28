@@ -3,7 +3,7 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from datetime import datetime
-from ACP import ImagingPlan
+from .core.acp_client import ImagingPlan
 
 class ImagingPlanBuilder:
     """成像计划构建类"""
