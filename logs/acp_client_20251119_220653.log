@@ -1,0 +1,12 @@
+2025-11-19 22:06:53 - ACPClient - INFO - 应用程序启动
+2025-11-19 22:06:57 - ACPClient - INFO - 开始连接到ACP服务器
+2025-11-19 22:06:57 - ACPClient - DEBUG - 连接参数 - URL: http://27056t89i6.wicp.vip:1011, User: share
+2025-11-19 22:07:01 - ACPClient - INFO - 成功连接到ACP服务器
+2025-11-19 22:07:03 - ACPClient - DEBUG - 开始检查系统状态
+2025-11-19 22:07:04 - ACPClient - INFO - 系统状态更新 - 天文台: Offline, 望远镜: Offline
+2025-11-19 22:07:24 - ACPClient - INFO - 开始连接到ACP服务器
+2025-11-19 22:07:24 - ACPClient - DEBUG - 连接参数 - URL: http://270q56u899.qicp.vip:3535/, User: share
+2025-11-19 22:07:27 - ACPClient - INFO - 成功连接到ACP服务器
+2025-11-19 22:07:30 - ACPClient - DEBUG - 开始检查系统状态
+2025-11-19 22:07:30 - ACPClient - INFO - 系统状态更新 - 天文台: In use, 望远镜: Sidereal Track
+2025-11-19 22:08:39 - ACPClient - INFO - 应用程序关闭
