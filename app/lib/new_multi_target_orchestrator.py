@@ -92,6 +92,30 @@ class NewMultiTargetOrchestrator:
                 dryrun=self.dry_run
             )
             
+            # 7. 初始化中天管理器并设置给执行器
+            from lib.meridian_flip_manager import MeridianFlipManager
+            meridian_manager = MeridianFlipManager(dryrun=self.dry_run)
+            
+            # 设置观测站位置
+            if hasattr(config, 'observatory'):
+                meridian_manager.set_observatory_location(
+                    config.observatory.latitude,
+                    config.observatory.longitude
+                )
+            
+            # 设置中天反转参数
+            if hasattr(config, 'meridian_flip'):
+                mf_config = config.meridian_flip
+                if hasattr(mf_config, 'stop_minutes_before'):
+                    meridian_manager.stop_minutes_before = mf_config.stop_minutes_before
+                if hasattr(mf_config, 'resume_minutes_after'):
+                    meridian_manager.resume_minutes_after = mf_config.resume_minutes_after
+                if hasattr(mf_config, 'safety_margin'):
+                    meridian_manager.safety_margin = mf_config.safety_margin
+            
+            # 将中天管理器设置给执行器
+            self.executor.set_meridian_manager(meridian_manager)
+            
             # 添加状态回调
             self.executor.add_status_callback(self._on_observation_status)
             

@@ -10,7 +10,8 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..',
 import math
 import time
 from datetime import datetime, timedelta
-from ACP.gui.logger import LogManager
+
+from .utils.log_manager import LogManager
 
 
 class MeridianFlipManager:

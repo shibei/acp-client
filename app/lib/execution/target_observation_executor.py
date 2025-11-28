@@ -15,6 +15,7 @@ from ..core.acp_connection_manager import ACPConnectionManager
 from ..utils.time_utils import TimeUtils
 from ..utils.observation_utils import ObservationUtils
 from ..utils.log_manager import LogManager
+from ..meridian_flip_manager import MeridianFlipManager
 
 
 class TargetObservationExecutor:
@@ -39,6 +40,7 @@ class TargetObservationExecutor:
         self.current_target: Optional[Dict[str, Any]] = None
         self.observation_start_time: Optional[datetime] = None
         self.status_callbacks: list[Callable] = []
+        self.meridian_manager: Optional[MeridianFlipManager] = None
     
     def add_status_callback(self, callback: Callable):
         """添加状态回调函数
@@ -47,6 +49,14 @@ class TargetObservationExecutor:
             callback: 回调函数，接收状态字典
         """
         self.status_callbacks.append(callback)
+    
+    def set_meridian_manager(self, meridian_manager: MeridianFlipManager):
+        """设置中天管理器
+        
+        Args:
+            meridian_manager: 中天反转管理器
+        """
+        self.meridian_manager = meridian_manager
     
     def execute_target(self, target: Any, global_config: Dict[str, Any]) -> bool:
         """执行目标观测
@@ -60,8 +70,26 @@ class TargetObservationExecutor:
             False: 观测失败
         """
         target_name = target.name
-        print(f"\n[{datetime.now().strftime('%H:%M:%S')}] {'[DRYRUN] ' if self.dryrun else ''}开始执行 {target_name} 观测任务")
+        current_time = datetime.now()
+        print(f"\n[{current_time.strftime('%H:%M:%S')}] {'[DRYRUN] ' if self.dryrun else ''}开始执行 {target_name} 观测任务")
         self.log_manager.info(f"{'[DRYRUN] ' if self.dryrun else ''}开始执行 {target_name} 观测任务")
+        
+        # 显示中天时间（如果中天管理器可用）
+        if self.meridian_manager:
+            try:
+                meridian_time = self.meridian_manager.calculate_meridian_time(
+                    target.ra, target.dec, current_time
+                )
+                if meridian_time:
+                    meridian_str = meridian_time.strftime('%H:%M:%S')
+                    print(f"[{current_time.strftime('%H:%M:%S')}] 🌟 {target_name} 中天时间: {meridian_str}")
+                    self.log_manager.info(f"{target_name} 中天时间: {meridian_str}")
+                else:
+                    print(f"[{current_time.strftime('%H:%M:%S')}] ⚠️ 无法计算 {target_name} 的中天时间")
+                    self.log_manager.warning(f"无法计算 {target_name} 的中天时间")
+            except Exception as e:
+                print(f"[{current_time.strftime('%H:%M:%S')}] ⚠️ 计算中天时间出错: {str(e)}")
+                self.log_manager.warning(f"计算 {target_name} 中天时间出错: {str(e)}")
         
         self.current_target = target
         self.observation_start_time = datetime.now()
@@ -187,8 +215,20 @@ class TargetObservationExecutor:
         Returns:
             中天反转信息
         """
-        # 这里可以集成中天反转管理器
-        # 暂时返回基本信息
+        # 如果中天管理器可用，使用实际的中天反转检查
+        if self.meridian_manager:
+            try:
+                return self.meridian_manager.check_meridian_flip_needed(
+                    target.ra, target.dec, current_time
+                )
+            except Exception as e:
+                return {
+                    'status': 'error',
+                    'message': f'中天反转检查出错: {str(e)}',
+                    'wait_needed': False
+                }
+        
+        # 如果中天管理器不可用，返回默认信息
         return {
             'check_needed': False,
             'wait_needed': False,

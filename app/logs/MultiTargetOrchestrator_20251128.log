@@ -219,3 +219,20 @@
 2025-11-28 21:58:17 - MultiTargetOrchestrator - INFO - 正在验证目标列表...
 2025-11-28 21:58:17 - MultiTargetOrchestrator - INFO - 目标 IC 1871: 可观测性=True, 时间有效=True
 2025-11-28 21:58:17 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-28 22:48:53 - MultiTargetOrchestrator - INFO - 正在初始化多目标观测协调器...
+2025-11-28 22:48:53 - MultiTargetOrchestrator - INFO - 多目标观测协调器初始化完成
+2025-11-28 22:48:53 - MultiTargetOrchestrator - INFO - 多目标自动观测系统启动
+2025-11-28 22:48:53 - MultiTargetOrchestrator - INFO - 开始执行观测序列...
+2025-11-28 22:48:53 - MultiTargetOrchestrator - INFO - 正在计算调度摘要...
+2025-11-28 22:48:53 - MultiTargetOrchestrator - INFO - 正在验证目标列表...
+2025-11-28 22:48:53 - MultiTargetOrchestrator - INFO - 目标 IC 1871: 可观测性=True, 时间有效=True
+2025-11-28 22:48:53 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-28 22:48:53 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-28 22:48:53 - MultiTargetOrchestrator - INFO - 观测调度摘要: 总目标 3 个，可观测 3 个 - 时间范围: 2025-11-28 22:48 到 2025-11-28 22:48 (持续 0.0 小时)
+2025-11-28 22:48:53 - MultiTargetOrchestrator - INFO - 计划观测 3 个目标
+2025-11-28 22:48:56 - MultiTargetOrchestrator - INFO - 开始观测目标 1/3: IC 1871
+2025-11-28 22:48:56 - MultiTargetOrchestrator - INFO - 开始执行 IC 1871 观测任务
+2025-11-28 22:48:56 - MultiTargetOrchestrator - INFO - IC 1871 中天时间: 13:22:21
+2025-11-28 22:49:03 - MultiTargetOrchestrator - ERROR - IC 1871 观测计划启动失败
+2025-11-28 22:49:03 - MultiTargetOrchestrator - ERROR - 目标 IC 1871 观测执行失败
+2025-11-28 22:49:03 - MultiTargetOrchestrator - INFO - 开始观测目标 2/3: ic 405
