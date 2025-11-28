@@ -7,6 +7,7 @@
 滤镜：H-alpha
 曝光：600秒
 数量：30张
+停止时间：可选，如果设置则先停止当前计划
 启动时间：2025-11-20 02:30:00
 """
 
@@ -19,7 +20,8 @@ from ACP.gui.logger import LogManager
 def main():
     """主函数"""
     # 配置参数
-    TARGET_TIME = datetime(2025, 11, 19, 23, 39, 0)  # 2025-11-20 02:30:00
+    STOP_TIME = datetime(2025, 11, 19, 23, 30, 0)  # 停止当前计划的时间（可选，设为None则不停止）
+    START_TIME = datetime(2025, 11, 19, 23, 39, 0)  # 启动新计划的时间
     
     # ACP服务器配置
     ACP_URL = "http://27056t89i6.wicp.vip:1011"
@@ -55,7 +57,9 @@ def main():
     print(f"滤镜: H-alpha (ID: {FILTER_ID})")
     print(f"曝光: {EXPOSURE_TIME}秒 x {IMAGE_COUNT}张")
     print(f"预计总时间: {EXPOSURE_TIME * IMAGE_COUNT / 3600:.1f}小时")
-    print(f"计划启动时间: {TARGET_TIME.strftime('%Y-%m-%d %H:%M:%S')}")
+    if STOP_TIME:
+        print(f"计划停止时间: {STOP_TIME.strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"计划启动时间: {START_TIME.strftime('%Y-%m-%d %H:%M:%S')}")
     print("="*70)
     
     # 连接到ACP服务器
@@ -69,11 +73,47 @@ def main():
         log_manager.error(f"连接ACP服务器失败: {e}", exc_info=True)
         return
     
-    # 等待到指定时间
-    print(f"\n[{datetime.now().strftime('%H:%M:%S')}] 等待到预定时间...")
+    # 如果设置了停止时间，先等待并停止当前计划
+    if STOP_TIME:
+        print(f"\n[{datetime.now().strftime('%H:%M:%S')}] 等待到停止时间...")
+        while True:
+            now = datetime.now()
+            time_diff = (STOP_TIME - now).total_seconds()
+            
+            if time_diff <= 0:
+                break
+            
+            # 每30秒显示一次倒计时
+            if int(time_diff) % 30 == 0:
+                hours = int(time_diff // 3600)
+                minutes = int((time_diff % 3600) // 60)
+                seconds = int(time_diff % 60)
+                print(f"[{now.strftime('%H:%M:%S')}] 距离停止还有: {hours:02d}:{minutes:02d}:{seconds:02d}")
+            
+            time.sleep(1)
+        
+        print(f"\n[{datetime.now().strftime('%H:%M:%S')}] ⏰ 到达停止时间，停止当前计划...")
+        log_manager.info("到达停止时间，准备停止当前计划")
+        
+        try:
+            print(f"[{datetime.now().strftime('%H:%M:%S')}] 正在停止当前脚本...")
+            success = client.stop_script()
+            time.sleep(5)  # 等待5秒确保脚本停止
+            if success:
+                print(f"[{datetime.now().strftime('%H:%M:%S')}] ✓ 当前脚本已停止")
+                log_manager.info("成功停止当前脚本")
+            else:
+                print(f"[{datetime.now().strftime('%H:%M:%S')}] ⚠ 停止脚本可能失败，继续执行...")
+                log_manager.warning("停止脚本响应异常")
+        except Exception as e:
+            print(f"[{datetime.now().strftime('%H:%M:%S')}] ✗ 停止脚本时出错: {e}")
+            log_manager.error(f"停止脚本失败: {e}", exc_info=True)
+    
+    # 等待到指定启动时间
+    print(f"\n[{datetime.now().strftime('%H:%M:%S')}] 等待到启动时间...")
     while True:
         now = datetime.now()
-        time_diff = (TARGET_TIME - now).total_seconds()
+        time_diff = (START_TIME - now).total_seconds()
         
         if time_diff <= 0:
             break
@@ -87,8 +127,8 @@ def main():
         
         time.sleep(1)
     
-    print(f"\n[{datetime.now().strftime('%H:%M:%S')}] ⏰ 到达预定时间，开始执行任务...")
-    log_manager.info("到达预定时间，开始执行NGC 1499观测任务")
+    print(f"\n[{datetime.now().strftime('%H:%M:%S')}] ⏰ 到达启动时间，开始执行任务...")
+    log_manager.info("到达启动时间，开始执行NGC 1499观测任务")
     
     # 步骤1: 停止当前运行的脚本
     try:
