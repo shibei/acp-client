@@ -1,0 +1,15 @@
+# ACPClient GUI 依赖
+# 基础GUI库
+tkinter;python_version>="3.0"
+
+# 数据处理
+PyYAML>=6.0
+
+# 可选的增强库
+# matplotlib>=3.5.0  # 用于图表显示
+# pillow>=9.0.0     # 用于图像处理
+# numpy>=1.21.0     # 用于数值计算
+
+# 开发工具
+# autopep8>=1.6.0   # 代码格式化
+# pylint>=2.12.0    # 代码检查
