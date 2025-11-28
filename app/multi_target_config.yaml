@@ -12,33 +12,33 @@ acp_server:
 
 # 多目标观测计划
 targets:
-  - name: 'IC 1871'
-    ra: '02:53:19.50'
-    dec: '60:26:59.1'
-    start_time: '2025-11-28 23:20:00'
-    priority: 1
-    meridian_time: '23:41:00'  # 可选：手动指定中天时间（格式 HH:MM:SS）
-    filters:
-      - filter_id: 4
-        name: 'H-alpha'
-        exposure: 300
-        count: 36
-        binning: 1
-      - filter_id: 6
-        name: 'OIII'
-        exposure: 300
-        count: 36
-        binning: 1
-      - filter_id: 5
-        name: 'SII'
-        exposure: 300
-        count: 36
-        binning: 1
+  # - name: 'IC 1871'
+  #   ra: '02:53:19.50'
+  #   dec: '60:26:59.1'
+  #   start_time: '2025-11-28 23:20:00'
+  #   priority: 1
+  #   meridian_time: '23:41:00'  # 可选：手动指定中天时间（格式 HH:MM:SS）
+  #   filters:
+  #     - filter_id: 4
+  #       name: 'H-alpha'
+  #       exposure: 300
+  #       count: 36
+  #       binning: 1
+  #     - filter_id: 6
+  #       name: 'OIII'
+  #       exposure: 300
+  #       count: 36
+  #       binning: 1
+  #     - filter_id: 5
+  #       name: 'SII'
+  #       exposure: 300
+  #       count: 36
+  #       binning: 1
 
   - name: 'ic 405'
     ra: '05:16:30.00'
     dec: '34:21:00.0'
-    start_time: '2025-11-29 00:30:00'
+    start_time: '2025-11-29 00:05:00'
     priority: 2
     meridian_time: '02:11:00'  # 可选：手动指定中天时间（格式 HH:MM:SS）
     filters:
