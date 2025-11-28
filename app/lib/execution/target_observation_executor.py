@@ -77,16 +77,27 @@ class TargetObservationExecutor:
         # 显示中天时间（如果中天管理器可用）
         if self.meridian_manager:
             try:
-                meridian_time = self.meridian_manager.calculate_meridian_time(
-                    target.ra, target.dec, current_time
-                )
-                if meridian_time:
-                    meridian_str = meridian_time.strftime('%H:%M:%S')
-                    print(f"[{current_time.strftime('%H:%M:%S')}] 🌟 {target_name} 中天时间: {meridian_str}")
-                    self.log_manager.info(f"{target_name} 中天时间: {meridian_str}")
+                # 检查是否有手动指定的中天时间
+                if hasattr(target, 'meridian_time') and target.meridian_time:
+                    # 使用手动指定的中天时间
+                    today = current_time.date()
+                    meridian_time_str = f"{today} {target.meridian_time}"
+                    meridian_time = datetime.strptime(meridian_time_str, '%Y-%m-%d %H:%M:%S')
+                    meridian_str = target.meridian_time
+                    print(f"[{current_time.strftime('%H:%M:%S')}] 🌟 {target_name} 中天时间: {meridian_str} (手动指定)")
+                    self.log_manager.info(f"{target_name} 中天时间: {meridian_str} (手动指定)")
                 else:
-                    print(f"[{current_time.strftime('%H:%M:%S')}] ⚠️ 无法计算 {target_name} 的中天时间")
-                    self.log_manager.warning(f"无法计算 {target_name} 的中天时间")
+                    # 自动计算中天时间
+                    meridian_time = self.meridian_manager.calculate_meridian_time(
+                        target.ra, target.dec, current_time
+                    )
+                    if meridian_time:
+                        meridian_str = meridian_time.strftime('%H:%M:%S')
+                        print(f"[{current_time.strftime('%H:%M:%S')}] 🌟 {target_name} 中天时间: {meridian_str}")
+                        self.log_manager.info(f"{target_name} 中天时间: {meridian_str}")
+                    else:
+                        print(f"[{current_time.strftime('%H:%M:%S')}] ⚠️ 无法计算 {target_name} 的中天时间")
+                        self.log_manager.warning(f"无法计算 {target_name} 的中天时间")
             except Exception as e:
                 print(f"[{current_time.strftime('%H:%M:%S')}] ⚠️ 计算中天时间出错: {str(e)}")
                 self.log_manager.warning(f"计算 {target_name} 中天时间出错: {str(e)}")

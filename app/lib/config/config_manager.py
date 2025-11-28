@@ -198,6 +198,7 @@ class TargetConfig:
     start_time: datetime
     priority: int
     filters: List[Dict[str, Any]]
+    meridian_time: Optional[str] = None  # 手动指定的中天时间，格式为 'HH:MM:SS'
     
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'TargetConfig':
@@ -216,7 +217,8 @@ class TargetConfig:
             dec=data.get('dec', ''),
             start_time=start_time,
             priority=data.get('priority', 1),
-            filters=data.get('filters', [])
+            filters=data.get('filters', []),
+            meridian_time=data.get('meridian_time')  # 手动指定的中天时间
         )
     
     def validate(self) -> List[str]:
@@ -232,6 +234,13 @@ class TargetConfig:
             errors.append("目标开始时间不能为空")
         if not self.filters:
             errors.append("目标滤镜配置不能为空")
+        
+        # 验证手动指定的中天时间格式
+        if self.meridian_time:
+            try:
+                datetime.strptime(self.meridian_time, '%H:%M:%S')
+            except ValueError:
+                errors.append(f"目标 {self.name} 的中天时间格式错误，应为 HH:MM:SS")
         
         # 验证滤镜配置
         for i, filter_cfg in enumerate(self.filters):
