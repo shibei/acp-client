@@ -386,6 +386,15 @@ class TargetObservationExecutor:
         Returns:
             中天反转信息
         """
+        # 如果目标配置中关闭了中天等待，直接返回不需要等待
+        if hasattr(target, 'enable_meridian_wait') and not target.enable_meridian_wait:
+            return {
+                'status': 'disabled',
+                'message': '该目标已禁用中天等待',
+                'wait_needed': False,
+                'disabled_by_target': True
+            }
+        
         # 如果中天管理器可用，使用实际的中天反转检查
         if self.meridian_manager:
             try:
@@ -433,8 +442,13 @@ class TargetObservationExecutor:
             status_msg += f" | 滤镜: {status['acp_status']['filter']}"
         
         # 中天反转信息
-        if status['meridian_info'].get('wait_needed'):
-            status_msg += f" | 中天反转: {status['meridian_info']['message']}"
+        meridian_info = status['meridian_info']
+        if meridian_info.get('wait_needed'):
+            status_msg += f" | 中天反转: {meridian_info['message']}"
+        elif meridian_info.get('status') == 'disabled':
+            status_msg += f" | 中天反转: 已禁用"
+        elif meridian_info.get('status') == 'error':
+            status_msg += f" | 中天反转: 错误"
         
         # print(status_msg)
         self.log_manager.info(status_msg)

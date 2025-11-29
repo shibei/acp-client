@@ -41,6 +41,7 @@ targets:
     start_time: '2025-11-29 19:34:00'
     priority: 2
     meridian_time: '02:11:00'  # 可选：手动指定中天时间（格式 HH:MM:SS）
+    enable_meridian_wait: true  # 启用中天等待（默认true，可省略）
     filters:
       - filter_id: 6
         name: 'OIII'
@@ -54,6 +55,7 @@ targets:
     start_time: '2025-11-29 02:30:00'
     priority: 2
     meridian_time: '02:11:00'  # 可选：手动指定中天时间（格式 HH:MM:SS）
+    enable_meridian_wait: false  # 禁用此目标的中天等待
     filters:
       - filter_id: 5
         name: 'SII'
@@ -97,3 +99,4 @@ retry_settings:
     - "camera_error"
     - "meridian_flip_failed"
     - "observation_timeout"
+

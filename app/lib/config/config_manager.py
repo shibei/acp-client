@@ -199,6 +199,7 @@ class TargetConfig:
     priority: int
     filters: List[Dict[str, Any]]
     meridian_time: Optional[str] = None  # 手动指定的中天时间，格式为 'HH:MM:SS'
+    enable_meridian_wait: bool = True  # 是否启用中天等待，默认为True
     
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'TargetConfig':
@@ -218,7 +219,8 @@ class TargetConfig:
             start_time=start_time,
             priority=data.get('priority', 1),
             filters=data.get('filters', []),
-            meridian_time=data.get('meridian_time')  # 手动指定的中天时间
+            meridian_time=data.get('meridian_time'),  # 手动指定的中天时间
+            enable_meridian_wait=data.get('enable_meridian_wait', True)  # 中天等待开关，默认启用
         )
     
     def validate(self) -> List[str]:
