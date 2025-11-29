@@ -2,3 +2,6 @@ tests/
 *.pyc
 *.log
 app/logs/
+__pycache__/
+*.py[cod]
+*$py.class
