@@ -18,7 +18,7 @@ def main():
     """主函数"""
     parser = argparse.ArgumentParser(description='多目标自动观测系统 v2.0')
     parser.add_argument('--config', '-c', 
-                       default='multi_target_config.yaml',
+                       default='../configs/multi_target_config.yaml',
                        help='配置文件路径 (默认: multi_target_config.yaml)')
     parser.add_argument('--dry-run', '-d', 
                        action='store_true',
