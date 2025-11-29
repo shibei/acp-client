@@ -791,3 +791,187 @@
 2025-11-29 20:28:58 - MultiTargetOrchestrator - INFO - 观测序列完成: 成功 0 个, 失败 2 个
 2025-11-29 20:28:58 - MultiTargetOrchestrator - INFO - 正在清理资源...
 2025-11-29 20:28:58 - MultiTargetOrchestrator - INFO - 多目标观测协调器关闭
+2025-11-29 20:37:57 - MultiTargetOrchestrator - INFO - 正在初始化多目标观测协调器...
+2025-11-29 20:37:57 - MultiTargetOrchestrator - INFO - 多目标观测协调器初始化完成
+2025-11-29 20:37:57 - MultiTargetOrchestrator - INFO - 多目标自动观测系统启动
+2025-11-29 20:37:57 - MultiTargetOrchestrator - INFO - 开始执行观测序列...
+2025-11-29 20:37:57 - MultiTargetOrchestrator - INFO - 正在计算调度摘要...
+2025-11-29 20:37:57 - MultiTargetOrchestrator - INFO - 正在验证目标列表...
+2025-11-29 20:37:57 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-29 20:37:57 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-29 20:37:57 - MultiTargetOrchestrator - INFO - 观测调度摘要: 总目标 2 个，可观测 2 个 - 时间范围: 2025-11-29 20:37 到 2025-11-29 20:37 (持续 0.0 小时)
+2025-11-29 20:37:57 - MultiTargetOrchestrator - INFO - 计划观测 2 个目标
+2025-11-29 20:38:02 - MultiTargetOrchestrator - INFO - 开始观测目标 1/2: ic 405
+2025-11-29 20:38:02 - MultiTargetOrchestrator - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 0, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error', 'observatory_offline', 'telescope_error', 'camera_error', 'meridian_flip_failed', 'observation_timeout']}
+2025-11-29 20:38:02 - MultiTargetOrchestrator - INFO - 已设置重试配置: {'enabled': True, 'max_attempts': 0, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error', 'observatory_offline', 'telescope_error', 'camera_error', 'meridian_flip_failed', 'observation_timeout']}
+2025-11-29 20:38:02 - MultiTargetOrchestrator - INFO - 开始执行 ic 405 观测任务
+2025-11-29 20:38:02 - MultiTargetOrchestrator - ERROR - ic 405 观测失败（重试0次后）
+2025-11-29 20:38:02 - MultiTargetOrchestrator - ERROR - 目标 ic 405 观测执行失败
+2025-11-29 20:38:02 - MultiTargetOrchestrator - INFO - 开始观测目标 2/2: ic 405
+2025-11-29 20:38:02 - MultiTargetOrchestrator - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 0, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error', 'observatory_offline', 'telescope_error', 'camera_error', 'meridian_flip_failed', 'observation_timeout']}
+2025-11-29 20:38:02 - MultiTargetOrchestrator - INFO - 已设置重试配置: {'enabled': True, 'max_attempts': 0, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error', 'observatory_offline', 'telescope_error', 'camera_error', 'meridian_flip_failed', 'observation_timeout']}
+2025-11-29 20:38:02 - MultiTargetOrchestrator - INFO - 开始执行 ic 405 观测任务
+2025-11-29 20:38:02 - MultiTargetOrchestrator - ERROR - ic 405 观测失败（重试0次后）
+2025-11-29 20:38:02 - MultiTargetOrchestrator - ERROR - 目标 ic 405 观测执行失败
+2025-11-29 20:38:02 - MultiTargetOrchestrator - INFO - 观测序列完成: 成功 0 个, 失败 2 个
+2025-11-29 20:38:02 - MultiTargetOrchestrator - INFO - 正在清理资源...
+2025-11-29 20:38:02 - MultiTargetOrchestrator - INFO - 多目标观测协调器关闭
+2025-11-29 20:59:50 - MultiTargetOrchestrator - INFO - 正在初始化多目标观测协调器...
+2025-11-29 20:59:50 - MultiTargetOrchestrator - INFO - 多目标观测协调器初始化完成
+2025-11-29 20:59:50 - MultiTargetOrchestrator - INFO - 正在验证目标列表...
+2025-11-29 20:59:50 - MultiTargetOrchestrator - ERROR - 验证目标 ic 405 失败: 'MultiTargetConfigManager' object has no attribute 'observatory'
+2025-11-29 20:59:50 - MultiTargetOrchestrator - ERROR - 验证目标 ic 405 失败: 'MultiTargetConfigManager' object has no attribute 'observatory'
+2025-11-29 21:01:00 - MultiTargetOrchestrator - INFO - 正在初始化多目标观测协调器...
+2025-11-29 21:01:00 - MultiTargetOrchestrator - ERROR - 初始化失败: 'dict' object has no attribute 'latitude'
+2025-11-29 21:01:38 - MultiTargetOrchestrator - INFO - 正在初始化多目标观测协调器...
+2025-11-29 21:01:38 - MultiTargetOrchestrator - INFO - 多目标观测协调器初始化完成
+2025-11-29 21:01:38 - MultiTargetOrchestrator - INFO - 正在验证目标列表...
+2025-11-29 21:01:38 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-29 21:01:38 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-29 21:01:45 - MultiTargetOrchestrator - INFO - 正在初始化多目标观测协调器...
+2025-11-29 21:01:45 - MultiTargetOrchestrator - INFO - 多目标观测协调器初始化完成
+2025-11-29 21:01:45 - MultiTargetOrchestrator - INFO - 正在计算调度摘要...
+2025-11-29 21:01:45 - MultiTargetOrchestrator - INFO - 正在验证目标列表...
+2025-11-29 21:01:45 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-29 21:01:45 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-29 21:02:18 - MultiTargetOrchestrator - INFO - 正在初始化多目标观测协调器...
+2025-11-29 21:02:18 - MultiTargetOrchestrator - INFO - 多目标观测协调器初始化完成
+2025-11-29 21:02:18 - MultiTargetOrchestrator - INFO - 正在计算调度摘要...
+2025-11-29 21:02:18 - MultiTargetOrchestrator - INFO - 正在验证目标列表...
+2025-11-29 21:02:18 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-29 21:02:18 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-29 21:02:18 - MultiTargetOrchestrator - INFO - 观测调度摘要: 总目标 2 个，可观测 2 个 - 时间范围: 2025-11-29 21:02 到 2025-11-29 21:02 (持续 0.0 小时)
+2025-11-29 21:02:45 - MultiTargetOrchestrator - INFO - 正在初始化多目标观测协调器...
+2025-11-29 21:02:45 - MultiTargetOrchestrator - INFO - 多目标观测协调器初始化完成
+2025-11-29 21:02:45 - MultiTargetOrchestrator - INFO - 多目标自动观测系统启动
+2025-11-29 21:02:45 - MultiTargetOrchestrator - INFO - 开始执行观测序列...
+2025-11-29 21:02:45 - MultiTargetOrchestrator - INFO - 正在计算调度摘要...
+2025-11-29 21:02:45 - MultiTargetOrchestrator - INFO - 正在验证目标列表...
+2025-11-29 21:02:45 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-29 21:02:45 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-29 21:02:45 - MultiTargetOrchestrator - INFO - 观测调度摘要: 总目标 2 个，可观测 2 个 - 时间范围: 2025-11-29 21:02 到 2025-11-29 21:02 (持续 0.0 小时)
+2025-11-29 21:02:45 - MultiTargetOrchestrator - INFO - 计划观测 2 个目标
+2025-11-29 21:02:49 - MultiTargetOrchestrator - INFO - 开始观测目标 1/2: ic 405
+2025-11-29 21:02:49 - MultiTargetOrchestrator - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 0, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error', 'observatory_offline', 'telescope_error', 'camera_error', 'meridian_flip_failed', 'observation_timeout']}
+2025-11-29 21:02:49 - MultiTargetOrchestrator - INFO - 已设置重试配置: {'enabled': True, 'max_attempts': 0, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error', 'observatory_offline', 'telescope_error', 'camera_error', 'meridian_flip_failed', 'observation_timeout']}
+2025-11-29 21:02:49 - MultiTargetOrchestrator - INFO - 开始执行 ic 405 观测任务
+2025-11-29 21:02:49 - MultiTargetOrchestrator - ERROR - ic 405 观测失败（重试0次后）
+2025-11-29 21:02:49 - MultiTargetOrchestrator - ERROR - 目标 ic 405 观测执行失败
+2025-11-29 21:02:49 - MultiTargetOrchestrator - INFO - 开始观测目标 2/2: ic 405
+2025-11-29 21:02:49 - MultiTargetOrchestrator - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 0, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error', 'observatory_offline', 'telescope_error', 'camera_error', 'meridian_flip_failed', 'observation_timeout']}
+2025-11-29 21:02:49 - MultiTargetOrchestrator - INFO - 已设置重试配置: {'enabled': True, 'max_attempts': 0, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error', 'observatory_offline', 'telescope_error', 'camera_error', 'meridian_flip_failed', 'observation_timeout']}
+2025-11-29 21:02:49 - MultiTargetOrchestrator - INFO - 开始执行 ic 405 观测任务
+2025-11-29 21:02:49 - MultiTargetOrchestrator - ERROR - ic 405 观测失败（重试0次后）
+2025-11-29 21:02:49 - MultiTargetOrchestrator - ERROR - 目标 ic 405 观测执行失败
+2025-11-29 21:02:49 - MultiTargetOrchestrator - INFO - 观测序列完成: 成功 0 个, 失败 2 个
+2025-11-29 21:02:49 - MultiTargetOrchestrator - INFO - 正在清理资源...
+2025-11-29 21:02:49 - MultiTargetOrchestrator - INFO - 多目标观测协调器关闭
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - 正在初始化多目标观测协调器...
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - 多目标观测协调器初始化完成
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - 多目标自动观测系统启动
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - 开始执行观测序列...
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - 正在计算调度摘要...
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - 正在验证目标列表...
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - 观测调度摘要: 总目标 2 个，可观测 2 个 - 时间范围: 2025-11-29 21:03 到 2025-11-29 21:03 (持续 0.0 小时)
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - 计划观测 2 个目标
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - 开始观测目标 1/2: ic 405
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 3, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error', 'observatory_offline', 'telescope_error', 'camera_error', 'meridian_flip_failed', 'observation_timeout']}
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - 已设置重试配置: {'enabled': True, 'max_attempts': 3, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error', 'observatory_offline', 'telescope_error', 'camera_error', 'meridian_flip_failed', 'observation_timeout']}
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - [DRYRUN] 开始执行 ic 405 观测任务
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - ic 405 中天时间: 02:11:00 (手动指定)
+2025-11-29 21:03:10 - MultiTargetOrchestrator - ERROR - ic 405 观测执行出错: 'FilterConfig' object is not subscriptable
+2025-11-29 21:03:10 - MultiTargetOrchestrator - ERROR - ic 405 观测失败（重试3次后）
+2025-11-29 21:03:10 - MultiTargetOrchestrator - ERROR - 目标 ic 405 观测执行失败
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - 开始观测目标 2/2: ic 405
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 3, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error', 'observatory_offline', 'telescope_error', 'camera_error', 'meridian_flip_failed', 'observation_timeout']}
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - 已设置重试配置: {'enabled': True, 'max_attempts': 3, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error', 'observatory_offline', 'telescope_error', 'camera_error', 'meridian_flip_failed', 'observation_timeout']}
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - [DRYRUN] 开始执行 ic 405 观测任务
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - ic 405 中天时间: 02:11:00 (手动指定)
+2025-11-29 21:03:10 - MultiTargetOrchestrator - ERROR - ic 405 观测执行出错: 'FilterConfig' object is not subscriptable
+2025-11-29 21:03:10 - MultiTargetOrchestrator - ERROR - ic 405 观测失败（重试3次后）
+2025-11-29 21:03:10 - MultiTargetOrchestrator - ERROR - 目标 ic 405 观测执行失败
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - 观测序列完成: 成功 0 个, 失败 2 个
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - 正在清理资源...
+2025-11-29 21:03:10 - MultiTargetOrchestrator - INFO - 多目标观测协调器关闭
+2025-11-29 21:05:22 - MultiTargetOrchestrator - INFO - 正在初始化多目标观测协调器...
+2025-11-29 21:05:22 - MultiTargetOrchestrator - INFO - 多目标观测协调器初始化完成
+2025-11-29 21:05:22 - MultiTargetOrchestrator - INFO - 多目标自动观测系统启动
+2025-11-29 21:05:22 - MultiTargetOrchestrator - INFO - 开始执行观测序列...
+2025-11-29 21:05:22 - MultiTargetOrchestrator - INFO - 正在计算调度摘要...
+2025-11-29 21:05:22 - MultiTargetOrchestrator - INFO - 正在验证目标列表...
+2025-11-29 21:05:22 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-29 21:05:22 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-29 21:05:22 - MultiTargetOrchestrator - INFO - 观测调度摘要: 总目标 2 个，可观测 2 个 - 时间范围: 2025-11-29 21:05 到 2025-11-29 21:05 (持续 0.0 小时)
+2025-11-29 21:05:22 - MultiTargetOrchestrator - INFO - 计划观测 2 个目标
+2025-11-29 21:05:22 - MultiTargetOrchestrator - INFO - 开始观测目标 1/2: ic 405
+2025-11-29 21:05:22 - MultiTargetOrchestrator - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 3, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error', 'observatory_offline', 'telescope_error', 'camera_error', 'meridian_flip_failed', 'observation_timeout']}
+2025-11-29 21:05:22 - MultiTargetOrchestrator - INFO - 已设置重试配置: {'enabled': True, 'max_attempts': 3, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error', 'observatory_offline', 'telescope_error', 'camera_error', 'meridian_flip_failed', 'observation_timeout']}
+2025-11-29 21:05:22 - MultiTargetOrchestrator - INFO - [DRYRUN] 开始执行 ic 405 观测任务
+2025-11-29 21:05:22 - MultiTargetOrchestrator - INFO - ic 405 中天时间: 02:11:00 (手动指定)
+2025-11-29 21:05:23 - MultiTargetOrchestrator - INFO - ic 405 观测计划已启动
+2025-11-29 21:05:23 - MultiTargetOrchestrator - INFO - 开始监控 ic 405 观测状态（每30秒刷新）
+2025-11-29 21:05:23 - MultiTargetOrchestrator - INFO - 按 Ctrl+C 可跳过当前目标监控，继续下一个目标
+2025-11-29 21:05:23 - MultiTargetOrchestrator - INFO - ============================================================
+2025-11-29 21:05:23 - MultiTargetOrchestrator - WARNING - 状态回调出错: NewMultiTargetOrchestrator._on_observation_status() takes 2 positional arguments but 3 were given
+2025-11-29 21:05:23 - MultiTargetOrchestrator - ERROR - 监控 ic 405 时出错: 'TargetObservationExecutor' object has no attribute '_display_status'
+2025-11-29 21:05:23 - MultiTargetOrchestrator - ERROR - ic 405 观测失败（重试3次后）
+2025-11-29 21:05:23 - MultiTargetOrchestrator - ERROR - 目标 ic 405 观测执行失败
+2025-11-29 21:05:23 - MultiTargetOrchestrator - INFO - 开始观测目标 2/2: ic 405
+2025-11-29 21:05:23 - MultiTargetOrchestrator - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 3, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error', 'observatory_offline', 'telescope_error', 'camera_error', 'meridian_flip_failed', 'observation_timeout']}
+2025-11-29 21:05:23 - MultiTargetOrchestrator - INFO - 已设置重试配置: {'enabled': True, 'max_attempts': 3, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error', 'observatory_offline', 'telescope_error', 'camera_error', 'meridian_flip_failed', 'observation_timeout']}
+2025-11-29 21:05:23 - MultiTargetOrchestrator - INFO - [DRYRUN] 开始执行 ic 405 观测任务
+2025-11-29 21:05:23 - MultiTargetOrchestrator - INFO - ic 405 中天时间: 02:11:00 (手动指定)
+2025-11-29 21:05:24 - MultiTargetOrchestrator - INFO - ic 405 观测计划已启动
+2025-11-29 21:05:24 - MultiTargetOrchestrator - INFO - 开始监控 ic 405 观测状态（每30秒刷新）
+2025-11-29 21:05:24 - MultiTargetOrchestrator - INFO - 按 Ctrl+C 可跳过当前目标监控，继续下一个目标
+2025-11-29 21:05:24 - MultiTargetOrchestrator - INFO - ============================================================
+2025-11-29 21:05:24 - MultiTargetOrchestrator - WARNING - 状态回调出错: NewMultiTargetOrchestrator._on_observation_status() takes 2 positional arguments but 3 were given
+2025-11-29 21:05:24 - MultiTargetOrchestrator - ERROR - 监控 ic 405 时出错: 'TargetObservationExecutor' object has no attribute '_display_status'
+2025-11-29 21:05:24 - MultiTargetOrchestrator - ERROR - ic 405 观测失败（重试3次后）
+2025-11-29 21:05:24 - MultiTargetOrchestrator - ERROR - 目标 ic 405 观测执行失败
+2025-11-29 21:05:24 - MultiTargetOrchestrator - INFO - 观测序列完成: 成功 0 个, 失败 2 个
+2025-11-29 21:05:24 - MultiTargetOrchestrator - INFO - 正在清理资源...
+2025-11-29 21:05:24 - MultiTargetOrchestrator - INFO - 多目标观测协调器关闭
+2025-11-29 21:05:49 - MultiTargetOrchestrator - INFO - 正在初始化多目标观测协调器...
+2025-11-29 21:05:49 - MultiTargetOrchestrator - INFO - 多目标观测协调器初始化完成
+2025-11-29 21:05:49 - MultiTargetOrchestrator - INFO - 多目标自动观测系统启动
+2025-11-29 21:05:49 - MultiTargetOrchestrator - INFO - 开始执行观测序列...
+2025-11-29 21:05:49 - MultiTargetOrchestrator - INFO - 正在计算调度摘要...
+2025-11-29 21:05:49 - MultiTargetOrchestrator - INFO - 正在验证目标列表...
+2025-11-29 21:05:49 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-29 21:05:49 - MultiTargetOrchestrator - INFO - 目标 ic 405: 可观测性=True, 时间有效=True
+2025-11-29 21:05:49 - MultiTargetOrchestrator - INFO - 观测调度摘要: 总目标 2 个，可观测 2 个 - 时间范围: 2025-11-29 21:05 到 2025-11-29 21:05 (持续 0.0 小时)
+2025-11-29 21:05:49 - MultiTargetOrchestrator - INFO - 计划观测 2 个目标
+2025-11-29 21:05:49 - MultiTargetOrchestrator - INFO - 开始观测目标 1/2: ic 405
+2025-11-29 21:05:49 - MultiTargetOrchestrator - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 3, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error', 'observatory_offline', 'telescope_error', 'camera_error', 'meridian_flip_failed', 'observation_timeout']}
+2025-11-29 21:05:49 - MultiTargetOrchestrator - INFO - 已设置重试配置: {'enabled': True, 'max_attempts': 3, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error', 'observatory_offline', 'telescope_error', 'camera_error', 'meridian_flip_failed', 'observation_timeout']}
+2025-11-29 21:05:49 - MultiTargetOrchestrator - INFO - [DRYRUN] 开始执行 ic 405 观测任务
+2025-11-29 21:05:49 - MultiTargetOrchestrator - INFO - ic 405 中天时间: 02:11:00 (手动指定)
+2025-11-29 21:05:50 - MultiTargetOrchestrator - INFO - ic 405 观测计划已启动
+2025-11-29 21:05:50 - MultiTargetOrchestrator - INFO - 开始监控 ic 405 观测状态（每30秒刷新）
+2025-11-29 21:05:50 - MultiTargetOrchestrator - INFO - 按 Ctrl+C 可跳过当前目标监控，继续下一个目标
+2025-11-29 21:05:50 - MultiTargetOrchestrator - INFO - ============================================================
+2025-11-29 21:05:50 - MultiTargetOrchestrator - WARNING - 状态回调出错: NewMultiTargetOrchestrator._on_observation_status() takes 2 positional arguments but 3 were given
+2025-11-29 21:05:50 - MultiTargetOrchestrator - INFO - [21:05:50] ic 405 状态: 已停止 [STOP] | 进度: 0.0% (0/144分钟) | 滤镜: LUM | 中天反转: 已禁用
+2025-11-29 21:05:50 - MultiTargetOrchestrator - ERROR - 监控 ic 405 时出错: 'TargetObservationExecutor' object has no attribute '_is_observation_complete'
+2025-11-29 21:05:50 - MultiTargetOrchestrator - ERROR - ic 405 观测失败（重试3次后）
+2025-11-29 21:05:50 - MultiTargetOrchestrator - ERROR - 目标 ic 405 观测执行失败
+2025-11-29 21:05:50 - MultiTargetOrchestrator - INFO - 开始观测目标 2/2: ic 405
+2025-11-29 21:05:50 - MultiTargetOrchestrator - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 3, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error', 'observatory_offline', 'telescope_error', 'camera_error', 'meridian_flip_failed', 'observation_timeout']}
+2025-11-29 21:05:50 - MultiTargetOrchestrator - INFO - 已设置重试配置: {'enabled': True, 'max_attempts': 3, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error', 'observatory_offline', 'telescope_error', 'camera_error', 'meridian_flip_failed', 'observation_timeout']}
+2025-11-29 21:05:50 - MultiTargetOrchestrator - INFO - [DRYRUN] 开始执行 ic 405 观测任务
+2025-11-29 21:05:50 - MultiTargetOrchestrator - INFO - ic 405 中天时间: 02:11:00 (手动指定)
+2025-11-29 21:05:51 - MultiTargetOrchestrator - INFO - ic 405 观测计划已启动
+2025-11-29 21:05:51 - MultiTargetOrchestrator - INFO - 开始监控 ic 405 观测状态（每30秒刷新）
+2025-11-29 21:05:51 - MultiTargetOrchestrator - INFO - 按 Ctrl+C 可跳过当前目标监控，继续下一个目标
+2025-11-29 21:05:51 - MultiTargetOrchestrator - INFO - ============================================================
+2025-11-29 21:05:51 - MultiTargetOrchestrator - WARNING - 状态回调出错: NewMultiTargetOrchestrator._on_observation_status() takes 2 positional arguments but 3 were given
+2025-11-29 21:05:51 - MultiTargetOrchestrator - INFO - [21:05:51] ic 405 状态: 已停止 [STOP] | 进度: 0.0% (0/72分钟) | 滤镜: LUM
+2025-11-29 21:05:51 - MultiTargetOrchestrator - ERROR - 监控 ic 405 时出错: 'TargetObservationExecutor' object has no attribute '_is_observation_complete'
+2025-11-29 21:05:51 - MultiTargetOrchestrator - ERROR - ic 405 观测失败（重试3次后）
+2025-11-29 21:05:51 - MultiTargetOrchestrator - ERROR - 目标 ic 405 观测执行失败
+2025-11-29 21:05:51 - MultiTargetOrchestrator - INFO - 观测序列完成: 成功 0 个, 失败 2 个
+2025-11-29 21:05:51 - MultiTargetOrchestrator - INFO - 正在清理资源...
+2025-11-29 21:05:51 - MultiTargetOrchestrator - INFO - 多目标观测协调器关闭
