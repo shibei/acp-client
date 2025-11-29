@@ -9,3 +9,9 @@ logs/
 */__pycache__/
 reports/
 configs/
+build/*
+*/build/*
+*/dist/*
+dist/*
+*.spec
+*.exe
