@@ -65,7 +65,7 @@ class ACPImagingManager:
         """
         if not self.connection_manager.is_connected:
             error_msg = "未连接到ACP服务器，无法启动成像计划"
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] {error_msg}")
+            # print(f"[{datetime.now().strftime('%H:%M:%S')}] {error_msg}")
             return False, error_msg
 
         # 停止当前计划（确保干净启动）
@@ -75,13 +75,13 @@ class ACPImagingManager:
         self.plan_start_time = datetime.now()
 
         if self.connection_manager.dryrun:
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] 模拟启动成像计划...")
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] [OK] 模拟启动成功！")
+            # print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] 模拟启动成像计划...")
+            # print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] [OK] 模拟启动成功！")
             self._print_plan_summary(plan, is_dryrun=True)
             return True, ""
 
         try:
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] 正在启动成像计划...")
+            # print(f"[{datetime.now().strftime('%H:%M:%S')}] 正在启动成像计划...")
 
             # 获取实际的ACP客户端
             client = self.connection_manager.client
@@ -104,17 +104,17 @@ class ACPImagingManager:
             success, error_message = client.start_imaging_plan(imaging_plan)
 
             if success:
-                print(f"[{datetime.now().strftime('%H:%M:%S')}] [OK] 成像计划启动成功！")
+                # print(f"[{datetime.now().strftime('%H:%M:%S')}] [OK] 成像计划启动成功！")
                 self._print_plan_summary(plan)
                 return True, ""
             else:
                 error_msg = error_message if error_message else "成像计划启动失败"
-                print(f"[{datetime.now().strftime('%H:%M:%S')}] [ERROR] {error_msg}")
+                # print(f"[{datetime.now().strftime('%H:%M:%S')}] [ERROR] {error_msg}")
                 return False, error_msg
 
         except Exception as e:
             error_msg = f"启动成像计划时出错: {e}"
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] [ERROR] {error_msg}")
+            # print(f"[{datetime.now().strftime('%H:%M:%S')}] [ERROR] {error_msg}")
             return False, error_msg
     
     def get_current_plan_status(self) -> Dict[str, Any]:

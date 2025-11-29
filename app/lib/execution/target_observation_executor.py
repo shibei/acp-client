@@ -86,7 +86,7 @@ class TargetObservationExecutor:
         """
         target_name = target.name
         current_time = datetime.now()
-        print(f"\n[{current_time.strftime('%H:%M:%S')}] {'[DRYRUN] ' if self.dryrun else ''}开始执行 {target_name} 观测任务")
+        # print(f"\n[{current_time.strftime('%H:%M:%S')}] {'[DRYRUN] ' if self.dryrun else ''}开始执行 {target_name} 观测任务")
         self.log_manager.info(f"{'[DRYRUN] ' if self.dryrun else ''}开始执行 {target_name} 观测任务")
         
         # 获取重试配置
@@ -97,7 +97,7 @@ class TargetObservationExecutor:
         
         for attempt in range(1, max_attempts + 1):
             if attempt > 1:
-                print(f"\n[{current_time.strftime('%H:%M:%S')}] 🔄 第 {attempt}/{max_attempts} 次重试，等待 {retry_interval} 秒...")
+                # print(f"\n[{current_time.strftime('%H:%M:%S')}] 🔄 第 {attempt}/{max_attempts} 次重试，等待 {retry_interval} 秒...")
                 self.log_manager.info(f"第 {attempt}/{max_attempts} 次重试，等待 {retry_interval} 秒")
                 time.sleep(retry_interval)
                 current_time = datetime.now()
@@ -105,7 +105,7 @@ class TargetObservationExecutor:
             success = self._execute_target_attempt(target, global_config, attempt)
             
             if success:
-                print(f"[{current_time.strftime('%H:%M:%S')}] ✅ {target_name} 观测成功")
+                # print(f"[{current_time.strftime('%H:%M:%S')}] ✅ {target_name} 观测成功")
                 self.log_manager.info(f"{target_name} 观测成功")
                 return True
             
@@ -118,10 +118,10 @@ class TargetObservationExecutor:
             if last_error and retry_on_errors:
                 error_type = self._get_error_type(last_error)
                 if error_type not in retry_on_errors:
-                    print(f"[{current_time.strftime('%H:%M:%S')}] ❌ 错误类型 '{error_type}' 不支持重试")
+                    # print(f"[{current_time.strftime('%H:%M:%S')}] ❌ 错误类型 '{error_type}' 不支持重试")
                     break
         
-        print(f"[{current_time.strftime('%H:%M:%S')}] ❌ {target_name} 观测失败（重试{max_attempts}次后）")
+        # print(f"[{current_time.strftime('%H:%M:%S')}] ❌ {target_name} 观测失败（重试{max_attempts}次后）")
         self.log_manager.error(f"{target_name} 观测失败（重试{max_attempts}次后）")
         return False
     
@@ -144,7 +144,7 @@ class TargetObservationExecutor:
         
         # 显示尝试次数信息
         if attempt > 1:
-            print(f"[{current_time.strftime('%H:%M:%S')}] 🔄 第 {attempt} 次尝试执行 {target_name}")
+            # print(f"[{current_time.strftime('%H:%M:%S')}] 🔄 第 {attempt} 次尝试执行 {target_name}")
             self.log_manager.info(f"第 {attempt} 次尝试执行 {target_name}")
         
         # 显示中天时间（如果中天管理器可用）
@@ -157,7 +157,7 @@ class TargetObservationExecutor:
                     meridian_time_str = f"{today} {target.meridian_time}"
                     meridian_time = datetime.strptime(meridian_time_str, '%Y-%m-%d %H:%M:%S')
                     meridian_str = target.meridian_time
-                    print(f"[{current_time.strftime('%H:%M:%S')}] 🌟 {target_name} 中天时间: {meridian_str} (手动指定)")
+                    # print(f"[{current_time.strftime('%H:%M:%S')}] 🌟 {target_name} 中天时间: {meridian_str} (手动指定)")
                     self.log_manager.info(f"{target_name} 中天时间: {meridian_str} (手动指定)")
                 else:
                     # 自动计算中天时间
@@ -166,13 +166,13 @@ class TargetObservationExecutor:
                     )
                     if meridian_time:
                         meridian_str = meridian_time.strftime('%H:%M:%S')
-                        print(f"[{current_time.strftime('%H:%M:%S')}] 🌟 {target_name} 中天时间: {meridian_str}")
+                        # print(f"[{current_time.strftime('%H:%M:%S')}] 🌟 {target_name} 中天时间: {meridian_str}")
                         self.log_manager.info(f"{target_name} 中天时间: {meridian_str}")
                     else:
-                        print(f"[{current_time.strftime('%H:%M:%S')}] ⚠️ 无法计算 {target_name} 的中天时间")
+                        # print(f"[{current_time.strftime('%H:%M:%S')}] ⚠️ 无法计算 {target_name} 的中天时间")
                         self.log_manager.warning(f"无法计算 {target_name} 的中天时间")
             except Exception as e:
-                print(f"[{current_time.strftime('%H:%M:%S')}] ⚠️ 计算中天时间出错: {str(e)}")
+                # print(f"[{current_time.strftime('%H:%M:%S')}] ⚠️ 计算中天时间出错: {str(e)}")
                 self.log_manager.warning(f"计算 {target_name} 中天时间出错: {str(e)}")
         
         self.current_target = target
@@ -186,7 +186,7 @@ class TargetObservationExecutor:
             success, error_msg = self.imaging_manager.start_imaging_plan(plan)
             
             if success:
-                print(f"[{datetime.now().strftime('%H:%M:%S')}] {target_name} 观测计划已启动")
+                # print(f"[{datetime.now().strftime('%H:%M:%S')}] {target_name} 观测计划已启动")
                 self.log_manager.info(f"{target_name} 观测计划已启动")
                 
                 # 监控观测过程
@@ -199,14 +199,14 @@ class TargetObservationExecutor:
                 return monitor_result.get('success', True) if monitor_result else True
             else:
                 error_msg = f"{target_name} 观测计划启动失败: {error_msg}"
-                print(f"[{datetime.now().strftime('%H:%M:%S')}] {error_msg}")
+                # print(f"[{datetime.now().strftime('%H:%M:%S')}] {error_msg}")
                 self.log_manager.error(error_msg)
                 self._last_error = error_msg
                 return False
                 
         except Exception as e:
             error_msg = f"{target_name} 观测执行出错: {str(e)}"
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] {error_msg}")
+            # print(f"[{datetime.now().strftime('%H:%M:%S')}] {error_msg}")
             self.log_manager.error(error_msg)
             self._last_error = str(e)
             return False
@@ -257,9 +257,13 @@ class TargetObservationExecutor:
             dict: 监控结果，包含 success 和 error 信息
         """
         target_name = target.name
-        print(f"[{datetime.now().strftime('%H:%M:%S')}] 开始监控 {target_name} 观测状态（每30秒刷新）")
-        print("按 Ctrl+C 可跳过当前目标监控，继续下一个目标")
-        print("="*60)
+        # print(f"[{datetime.now().strftime('%H:%M:%S')}] 开始监控 {target_name} 观测状态（每30秒刷新）")
+        # print("按 Ctrl+C 可跳过当前目标监控，继续下一个目标")
+        # print("="*60)
+        
+        self.log_manager.info(f"开始监控 {target_name} 观测状态（每30秒刷新）")
+        self.log_manager.info("按 Ctrl+C 可跳过当前目标监控，继续下一个目标")
+        self.log_manager.info("="*60)
         
         result = {'success': True, 'error': None}
         last_status = None
@@ -272,7 +276,8 @@ class TargetObservationExecutor:
                 status = self._get_observation_status(target, current_time)
                 
                 if status is None:
-                    print(f"[{current_time.strftime('%H:%M:%S')}] ⚠️ 无法获取 {target_name} 的观测状态")
+                    # print(f"[{current_time.strftime('%H:%M:%S')}] ⚠️ 无法获取 {target_name} 的观测状态")
+                    self.log_manager.warning(f"无法获取 {target_name} 的观测状态")
                     time.sleep(5)
                     continue
                 
@@ -292,29 +297,29 @@ class TargetObservationExecutor:
                 
                 # 检查是否完成
                 if self._is_observation_complete(status):
-                    print(f"[{current_time.strftime('%H:%M:%S')}] ✅ {target_name} 观测完成")
+                    # print(f"[{current_time.strftime('%H:%M:%S')}] ✅ {target_name} 观测完成")
                     self.log_manager.info(f"{target_name} 观测完成")
                     return {'success': True}
                 
                 # 检查是否需要等待中天反转
                 if status.get('meridian_info', {}).get('wait_needed', False):
-                    print(f"[{current_time.strftime('%H:%M:%S')}] ⏳ {target_name} 等待中天反转...")
+                    # print(f"[{current_time.strftime('%H:%M:%S')}] ⏳ {target_name} 等待中天反转...")
                     self.log_manager.info(f"{target_name} 等待中天反转")
                     
                     # 等待中天反转
                     wait_success = self.meridian_manager.wait_for_meridian_flip(target)
                     
                     if wait_success:
-                        print(f"[{current_time.strftime('%H:%M:%S')}] ✅ {target_name} 中天反转等待完成")
+                        # print(f"[{current_time.strftime('%H:%M:%S')}] ✅ {target_name} 中天反转等待完成")
                         self.log_manager.info(f"{target_name} 中天反转等待完成")
                     else:
-                        print(f"[{current_time.strftime('%H:%M:%S')}] ⚠️ {target_name} 中天反转等待失败，继续监控...")
+                        # print(f"[{current_time.strftime('%H:%M:%S')}] ⚠️ {target_name} 中天反转等待失败，继续监控...")
                         self.log_manager.warning(f"{target_name} 中天反转等待失败，继续监控")
                 
                 # 检查是否有错误状态
                 if status.get('error'):
                     error_msg = f"{target_name} 观测出现错误: {status['error']}"
-                    print(f"[{current_time.strftime('%H:%M:%S')}] ❌ {error_msg}")
+                    # print(f"[{current_time.strftime('%H:%M:%S')}] ❌ {error_msg}")
                     self.log_manager.error(error_msg)
                     return {'success': False, 'error': status['error']}
                 
@@ -322,12 +327,12 @@ class TargetObservationExecutor:
                 time.sleep(self.status_check_interval)
                 
         except KeyboardInterrupt:
-            print(f"\n[{datetime.now().strftime('%H:%M:%S')}] ⏹️ 用户中断观测")
+            # print(f"\n[{datetime.now().strftime('%H:%M:%S')}] ⏹️ 用户中断观测")
             self.log_manager.info(f"用户中断 {target_name} 观测")
             return {'success': False, 'error': 'user_interrupted'}
         except Exception as e:
             error_msg = f"监控 {target_name} 时出错: {str(e)}"
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] {error_msg}")
+            # print(f"[{datetime.now().strftime('%H:%M:%S')}] {error_msg}")
             self.log_manager.error(error_msg)
             return {'success': False, 'error': str(e)}
     
@@ -431,7 +436,7 @@ class TargetObservationExecutor:
         if status['meridian_info'].get('wait_needed'):
             status_msg += f" | 中天反转: {status['meridian_info']['message']}"
         
-        print(status_msg)
+        # print(status_msg)
         self.log_manager.info(status_msg)
     
     def monitor_target_observation(self, target: Any, timeout_minutes: int = 60) -> Dict[str, Any]:
@@ -445,9 +450,13 @@ class TargetObservationExecutor:
             观测结果字典
         """
         target_name = target.name
-        print(f"[{datetime.now().strftime('%H:%M:%S')}] 开始监控 {target_name} 观测状态（每30秒刷新）")
-        print("按 Ctrl+C 可跳过当前目标监控，继续下一个目标")
-        print("="*60)
+        # print(f"[{datetime.now().strftime('%H:%M:%S')}] 开始监控 {target_name} 观测状态（每30秒刷新）")
+        # print("按 Ctrl+C 可跳过当前目标监控，继续下一个目标")
+        # print("="*60)
+        
+        self.log_manager.info(f"开始监控 {target_name} 观测状态（每30秒刷新）")
+        self.log_manager.info("按 Ctrl+C 可跳过当前目标监控，继续下一个目标")
+        self.log_manager.info("="*60)
         
         result = {
             'success': True,
@@ -480,7 +489,8 @@ class TargetObservationExecutor:
                 if status['has_error']:
                     result['success'] = False
                     result['error'] = status['acp_status'].get('error', '未知错误')
-                    print(f"[{current_time.strftime('%H:%M:%S')}] 观测出现错误，停止监控")
+                    # print(f"[{current_time.strftime('%H:%M:%S')}] 观测出现错误，停止监控")
+                    self.log_manager.info("观测出现错误，停止监控")
                     break
                 
                 # 检查超时
@@ -488,29 +498,33 @@ class TargetObservationExecutor:
                 if elapsed_minutes >= timeout_minutes:
                     result['success'] = False
                     result['error'] = '观测超时'
-                    print(f"[{current_time.strftime('%H:%M:%S')}] 观测超时（{timeout_minutes}分钟）")
+                    # print(f"[{current_time.strftime('%H:%M:%S')}] 观测超时（{timeout_minutes}分钟）")
+                    self.log_manager.info(f"观测超时（{timeout_minutes}分钟）")
                     break
                 
                 # 检查中天反转等待
                 if status['meridian_info'].get('wait_needed'):
-                    print(f"[{current_time.strftime('%H:%M:%S')}] 检测到中天反转等待需求")
+                    # print(f"[{current_time.strftime('%H:%M:%S')}] 检测到中天反转等待需求")
+                    self.log_manager.info("检测到中天反转等待需求")
                     wait_success = self.meridian_manager.wait_for_meridian_flip(
                         target.ra, target.dec, current_time
                     )
                     if not wait_success:
                         result['success'] = False
                         result['error'] = '中天反转等待被中断'
-                        print(f"[{current_time.strftime('%H:%M:%S')}] 中天反转等待被中断")
+                        # print(f"[{current_time.strftime('%H:%M:%S')}] 中天反转等待被中断")
+                        self.log_manager.info("中天反转等待被中断")
                         break
                 
                 time.sleep(30)  # 30秒检查一次
                 
         except KeyboardInterrupt:
-            print(f"\n[{datetime.now().strftime('%H:%M:%S')}] 用户中断监控，继续执行")
+            # print(f"\n[{datetime.now().strftime('%H:%M:%S')}] 用户中断监控，继续执行")
+            self.log_manager.info("用户中断监控，继续执行")
             result['error'] = '用户中断'
         except Exception as e:
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] 监控过程出错: {e}")
-            self.log_manager.error(f"监控 {target_name} 时出错: {e}")
+            # print(f"[{datetime.now().strftime('%H:%M:%S')}] 监控过程出错: {e}")
+            self.log_manager.error(f"监控过程出错: {e}")
             result['success'] = False
             result['error'] = str(e)
         

@@ -1,17 +1,18 @@
+# ACP天文台控制客户端
+# 提供与ACP天文台控制软件的HTTP接口交互
+
 import requests
-import time
-import logging
-import re
-import urllib.parse
-from typing import Dict, List, Optional
+from requests.auth import HTTPBasicAuth
 from urllib.parse import urljoin
-from dataclasses import dataclass
-import bs4 as bs
+from bs4 import BeautifulSoup as bs
+import logging
+import time
+import re
+from dataclasses import dataclass, field
+from typing import List, Dict, Optional, Tuple, Any
+import json
 
-
-
-# 配置日志
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# 获取日志记录器 - 移除basicConfig以避免与日志管理器冲突
 logger = logging.getLogger(__name__)
 
 @dataclass
@@ -458,17 +459,34 @@ class ACPClient:
             logger.info("监控已停止")
     
     def _print_status(self, status: ObservatoryStatus):
-        """打印状态信息"""
-        print(f"\n=== 天文台状态 ===")
-        print(f"本地时间: {status.local_time}")
-        print(f"UTC时间: {status.utc_time}")
-        print(f"LST时间: {status.lst_time}")
-        print(f"观测站: {status.observatory_status}")
-        print(f"所有者: {status.owner}")
-        print(f"望远镜: {status.telescope_status}")
-        print(f"相机: {status.camera_status}")
-        print(f"导星: {status.guider_status}")
-        print(f"当前位置: RA={status.current_ra}, Dec={status.current_dec}")
-        print(f"高度方位: Alt={status.current_alt}, Az={status.current_az}")
-        print(f"计划进度: {status.plan_progress}")
-        print(f"最后FWHM: {status.last_fwhm}")
+        """打印系统状态"""
+        # print(f"\n=== 天文台状态 ===")
+        # print(f"本地时间: {status.local_time}")
+        # print(f"UTC时间: {status.utc_time}")
+        # print(f"LST时间: {status.lst_time}")
+        # print(f"观测站: {status.observatory_status}")
+        # print(f"所有者: {status.owner}")
+        # print(f"望远镜: {status.telescope_status}")
+        # print(f"相机: {status.camera_status}")
+        # print(f"导星: {status.guider_status}")
+        # print(f"当前位置: RA={status.current_ra}, Dec={status.current_dec}")
+        # print(f"高度方位: Alt={status.current_alt}, Az={status.current_az}")
+        # print(f"计划进度: {status.plan_progress}")
+        # print(f"最后FWHM: {status.last_fwhm}")
+        
+        status_msg = f"""
+=== 天文台状态 ===
+本地时间: {status.local_time}
+UTC时间: {status.utc_time}
+LST时间: {status.lst_time}
+观测站: {status.observatory_status}
+所有者: {status.owner}
+望远镜: {status.telescope_status}
+相机: {status.camera_status}
+导星: {status.guider_status}
+当前位置: RA={status.current_ra}, Dec={status.current_dec}
+高度方位: Alt={status.current_alt}, Az={status.current_az}
+计划进度: {status.plan_progress}
+最后FWHM: {status.last_fwhm}
+"""
+        logger.info(status_msg.strip())

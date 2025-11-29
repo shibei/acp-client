@@ -40,21 +40,21 @@ class ACPConnectionManager:
             False: 连接失败
         """
         if self.dryrun:
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] 模拟连接到ACP服务器...")
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] [OK] 模拟连接成功")
+            # print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] 模拟连接到ACP服务器...")
+            # print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] [OK] 模拟连接成功")
             self.client = "DRYRUN_CLIENT"
             self.is_connected = True
             return True
         
         try:
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] 正在连接到ACP服务器...")
+            # print(f"[{datetime.now().strftime('%H:%M:%S')}] 正在连接到ACP服务器...")
             self.client = ACPClient(self.server_url, self.username, self.password)
             self.is_connected = True
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] [OK] 成功连接到ACP服务器")
+            # print(f"[{datetime.now().strftime('%H:%M:%S')}] [OK] 成功连接到ACP服务器")
             return True
         except Exception as e:
             self.is_connected = False
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] [ERROR] 连接失败: {e}")
+            # print(f"[{datetime.now().strftime('%H:%M:%S')}] [ERROR] 连接失败: {e}")
             return False
     
     def disconnect(self) -> bool:
@@ -65,7 +65,7 @@ class ACPConnectionManager:
             False: 断开失败
         """
         if self.dryrun:
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] 模拟断开ACP服务器连接")
+            # print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] 模拟断开ACP服务器连接")
             self.client = None
             self.is_connected = False
             return True
@@ -77,7 +77,7 @@ class ACPConnectionManager:
             self.is_connected = False
             return True
         except Exception as e:
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] 断开连接时出错: {e}")
+            # print(f"[{datetime.now().strftime('%H:%M:%S')}] 断开连接时出错: {e}")
             return False
     
     def get_status(self) -> Dict[str, Any]:
@@ -120,26 +120,26 @@ class ACPConnectionManager:
             False: 停止失败
         """
         if self.dryrun:
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] 模拟停止当前操作...")
+            # print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] 模拟停止当前操作...")
             time.sleep(1)  # 模拟等待
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] [OK] 模拟停止成功")
+            # print(f"[{datetime.now().strftime('%H:%M:%S')}] [DRYRUN] [OK] 模拟停止成功")
             return True
         
         if not self.client or not self.is_connected:
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] 未连接，无法停止操作")
+            # print(f"[{datetime.now().strftime('%H:%M:%S')}] 未连接，无法停止操作")
             return False
         
         try:
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] 正在停止当前操作...")
+            # print(f"[{datetime.now().strftime('%H:%M:%S')}] 正在停止当前操作...")
             success = self.client.stop_script()
             time.sleep(wait_seconds)
             
-            if success:
-                print(f"[{datetime.now().strftime('%H:%M:%S')}] [OK] 当前操作已停止")
-            else:
-                print(f"[{datetime.now().strftime('%H:%M:%S')}] [WARNING] 停止操作响应异常")
+            # if success:
+            #     print(f"[{datetime.now().strftime('%H:%M:%S')}] [OK] 当前操作已停止")
+            # else:
+            #     print(f"[{datetime.now().strftime('%H:%M:%S')}] [WARNING] 停止操作响应异常")
             
             return success
         except Exception as e:
-            print(f"[{datetime.now().strftime('%H:%M:%S')}] [ERROR] 停止操作时出错: {e}")
+            # print(f"[{datetime.now().strftime('%H:%M:%S')}] [ERROR] 停止操作时出错: {e}")
             return False
