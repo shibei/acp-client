@@ -87,7 +87,7 @@ global_settings:
 # 重试配置
 retry_settings:
   enabled: true              # 是否启用重试功能
-  max_attempts: 3            # 最大重试次数
+  max_attempts: 0            # 最大重试次数
   retry_interval_seconds: 5  # 重试间隔时间（秒）
   retry_on_errors:           # 触发重试的错误类型
     - "connection_timeout"

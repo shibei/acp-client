@@ -88,7 +88,7 @@ class ACPClient:
         
         try:
             html_str = self.session.get(self._make_url('/index.asp'), timeout=self.timeout).text
-            soup = bs.BeautifulSoup(html_str, 'html.parser')
+            soup = bs(html_str, 'html.parser')
             title_tags = soup.find_all('title')
             if title_tags:
                 self.title = title_tags[0].text
