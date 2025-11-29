@@ -315,6 +315,9 @@ class MultiTargetConfigManager:
         global_settings_data = self.raw_config.get('global_settings', {})
         self.global_settings = GlobalSettingsConfig.from_dict(global_settings_data)
         
+        # 重试设置（可选）
+        self.retry_settings = self.raw_config.get('retry_settings', {})
+        
         # 目标配置
         targets_data = self.raw_config.get('targets', [])
         self.targets = []

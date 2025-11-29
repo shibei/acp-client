@@ -282,6 +282,14 @@ class NewMultiTargetOrchestrator:
             是否成功执行
         """
         config = self.config_manager.get_config()
+        
+        # 设置重试配置（如果可用）
+        if hasattr(config, 'retry_settings'):
+            retry_config = config.retry_settings
+            if isinstance(retry_config, dict):
+                self.executor.set_retry_config(retry_config)
+                self.logger.info(f"已设置重试配置: {retry_config}")
+        
         return self.executor.execute_target(target, config.__dict__)
     
     def monitor_target_observation(self, target: Any, 

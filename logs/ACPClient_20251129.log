@@ -1,0 +1,31 @@
+2025-11-29 19:30:35 - ACPClient - INFO - 开始重试功能测试
+2025-11-29 19:30:53 - ACPClient - INFO - 开始重试功能测试
+2025-11-29 19:31:12 - ACPClient - INFO - 开始重试功能测试
+2025-11-29 19:31:29 - ACPClient - INFO - 开始重试功能测试
+2025-11-29 19:31:50 - ACPClient - INFO - 开始重试功能测试
+2025-11-29 19:31:50 - ACPClient - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 3, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error']}
+2025-11-29 19:31:50 - ACPClient - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 2, 'retry_interval_seconds': 10, 'retry_on_errors': ['connection_timeout']}
+2025-11-29 19:31:50 - ACPClient - INFO - 重试配置已更新: {'enabled': False}
+2025-11-29 19:31:50 - ACPClient - INFO - 重试功能测试完成
+2025-11-29 19:38:41 - ACPClient - INFO - 开始重试功能测试
+2025-11-29 19:38:41 - ACPClient - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 3, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error']}
+2025-11-29 19:38:41 - ACPClient - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 2, 'retry_interval_seconds': 10, 'retry_on_errors': ['connection_timeout']}
+2025-11-29 19:38:41 - ACPClient - INFO - 重试配置已更新: {'enabled': False}
+2025-11-29 19:38:41 - ACPClient - INFO - 重试功能测试完成
+2025-11-29 19:41:36 - ACPClient - INFO - 开始重试功能测试
+2025-11-29 19:41:36 - ACPClient - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 3, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error']}
+2025-11-29 19:41:36 - ACPClient - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 2, 'retry_interval_seconds': 10, 'retry_on_errors': ['connection_timeout']}
+2025-11-29 19:41:36 - ACPClient - INFO - 重试配置已更新: {'enabled': False}
+2025-11-29 19:41:36 - ACPClient - INFO - 重试功能测试完成
+2025-11-29 19:42:33 - ACPClient - INFO - 开始重试功能测试
+2025-11-29 19:42:34 - ACPClient - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 3, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error']}
+2025-11-29 19:42:34 - ACPClient - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 2, 'retry_interval_seconds': 10, 'retry_on_errors': ['connection_timeout']}
+2025-11-29 19:42:34 - ACPClient - INFO - 重试配置已更新: {'enabled': False}
+2025-11-29 19:42:34 - ACPClient - INFO - 重试功能测试完成
+2025-11-29 19:42:55 - ACPClient - INFO - 开始重试功能测试
+2025-11-29 19:42:55 - ACPClient - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 3, 'retry_interval_seconds': 5, 'retry_on_errors': ['connection_timeout', 'acp_server_error']}
+2025-11-29 19:42:55 - ACPClient - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 2, 'retry_interval_seconds': 10, 'retry_on_errors': ['connection_timeout']}
+2025-11-29 19:42:55 - ACPClient - INFO - 重试配置已更新: {'enabled': False}
+2025-11-29 19:42:55 - ACPClient - INFO - 重试功能测试完成
+2025-11-29 19:44:43 - ACPClient - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 3, 'retry_interval_seconds': 2, 'retry_on_errors': ['observatory_offline', 'connection_timeout', 'acp_server_error']}
+2025-11-29 19:45:06 - ACPClient - INFO - 重试配置已更新: {'enabled': True, 'max_attempts': 3, 'retry_interval_seconds': 2, 'retry_on_errors': ['observatory_offline', 'connection_timeout', 'acp_server_error']}

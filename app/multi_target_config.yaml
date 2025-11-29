@@ -6,7 +6,7 @@ schedule:
   stop_time: '2025-11-29 07:00:00'
 
 acp_server:
-  url: 'http://270q56u899.qicp.vip:4141'
+  url: 'http://27056t89i6.wicp.vip:1011'
   username: 'share'
   password: '1681'
 
@@ -38,7 +38,7 @@ targets:
   - name: 'ic 405'
     ra: '05:16:30.00'
     dec: '34:21:00.0'
-    start_time: '2025-11-29 00:31:00'
+    start_time: '2025-11-29 19:34:00'
     priority: 2
     meridian_time: '02:11:00'  # 可选：手动指定中天时间（格式 HH:MM:SS）
     filters:
@@ -65,7 +65,6 @@ targets:
         exposure: 600
         count: 6
         binning: 1
-      - filter_id: 6
 
 # 中天反转配置
 meridian_flip:
@@ -84,3 +83,17 @@ global_settings:
   auto_focus: true
   af_interval: 120
   dryrun: false
+
+# 重试配置
+retry_settings:
+  enabled: true              # 是否启用重试功能
+  max_attempts: 3            # 最大重试次数
+  retry_interval_seconds: 5  # 重试间隔时间（秒）
+  retry_on_errors:           # 触发重试的错误类型
+    - "connection_timeout"
+    - "acp_server_error" 
+    - "observatory_offline"
+    - "telescope_error"
+    - "camera_error"
+    - "meridian_flip_failed"
+    - "observation_timeout"

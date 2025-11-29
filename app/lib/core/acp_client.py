@@ -173,9 +173,12 @@ class ACPClient:
             pass
         return ""
     
-    def start_imaging_plan(self, plan: ImagingPlan) -> bool:
+    def start_imaging_plan(self, plan: ImagingPlan) -> tuple[bool, str]:
         """
         启动成像计划
+        
+        Returns:
+            (success, error_message): 启动是否成功和错误信息
         """
         for attempt in range(self.max_retries):
             try:
@@ -190,13 +193,22 @@ class ACPClient:
                 response.raise_for_status()
                 
                 logger.info(f"成像计划提交响应: {response.text}")
-                return "warning" not in response.text.lower()
+                
+                # 检查是否有警告信息
+                if "warning" in response.text.lower():
+                    warnings = self.get_observatory_warnings(response.text)
+                    error_msg = "; ".join(warnings) if warnings else "观测计划启动出现警告"
+                    logger.warning(f"成像计划启动警告: {error_msg}")
+                    return False, error_msg
+                
+                return True, ""
                 
             except requests.RequestException as e:
-                logger.error(f"启动成像计划失败: {e}, 尝试次数: {attempt + 1}")
+                error_msg = f"启动成像计划失败: {e}"
+                logger.error(f"{error_msg}, 尝试次数: {attempt + 1}")
                 time.sleep(self.retry_delay)
                 
-        return False
+        return False, "启动成像计划重试次数耗尽"
     
     def _build_imaging_form_data(self, plan: ImagingPlan) -> Dict[str, str]:
         """构建成像计划表单数据"""
