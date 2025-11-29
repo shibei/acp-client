@@ -397,13 +397,17 @@ class ObservationScheduleVisualizer:
             # 主要观测任务
             gantt_code.append(f"    总观测 :active, obs{i}, {start_str}, {duration_minutes}m")
             
-            # 滤镜详细分解
+            # 滤镜详细分解 - 显示更详细的信息
             for j, filter_info in enumerate(item['filter_breakdown']):
                 filter_start = filter_info['start_time'].strftime('%Y-%m-%d %H:%M:%S')
                 filter_duration = int(filter_info['total_duration'] / 60)
                 filter_name = filter_info['filter_name']
+                exposure_time = filter_info['exposure_time']
+                count = filter_info['count']
+                total_minutes = (exposure_time * count) / 60
                 
-                gantt_code.append(f"    {filter_name} ({filter_info['count']}张) : {filter_start}, {filter_duration}m")
+                # 显示格式：滤镜名称 (数量×单张曝光时间=总曝光时间)
+                gantt_code.append(f"    {filter_name} ({count}×{exposure_time}s={total_minutes:.0f}m) : {filter_start}, {filter_duration}m")
             
             gantt_code.append("")
         

@@ -420,18 +420,23 @@ class ObservationScheduleVisualizer:
                 color = target_colors[i % len(target_colors)]
                 gantt_code.append(f"    %% style {task_id} fill:{color}")
             
-            # 添加滤镜详情（可选）
-            if False:  # 在HTML中不显示滤镜详情
-                filter_breakdown = self._calculate_filter_breakdown(item)
-                for j, (filter_name, filter_info) in enumerate(filter_breakdown.items()):
-                    filter_start = filter_info['start_time']
-                    filter_duration = int(filter_info['duration_seconds'] / 60)
-                    filter_id = f"filter{i}_{j}"
-                    gantt_code.append(f"    {filter_name} ({filter_info['count']}张) :{filter_id}, {filter_start.strftime('%Y-%m-%d %H:%M:%S')}, {filter_duration}m")
-                    
-                    # 添加滤镜颜色
-                    filter_color = ColorPalette.get_filter_color(filter_name)
-                    gantt_code.append(f"    %% style {filter_id} fill:{filter_color}")
+            # 添加滤镜详情 - 在HTML模式中也显示详细信息
+            filter_breakdown = self._calculate_filter_breakdown(item['target'], item['start_time'], item['end_time'])
+            for j, filter_info in enumerate(filter_breakdown):
+                filter_start = filter_info['start_time']
+                filter_duration = int(filter_info['total_duration'] / 60)
+                filter_id = f"filter{i}_{j}"
+                count = filter_info['count']
+                exposure_time = filter_info['exposure_time']
+                total_minutes = (count * exposure_time) / 60
+                filter_name = filter_info['filter_name']
+                
+                # 显示格式：滤镜名称 (数量×单张曝光时间=总曝光时间)
+                gantt_code.append(f"    {filter_name} ({count}×{exposure_time}s={total_minutes:.0f}m) :{filter_id}, {filter_start.strftime('%Y-%m-%d %H:%M:%S')}, {filter_duration}m")
+                
+                # 添加滤镜颜色
+                filter_color = ColorPalette.get_filter_color(filter_name)
+                gantt_code.append(f"    %% style {filter_id} fill:{filter_color}")
         
         # 添加统计信息部分
         gantt_code.append("")
