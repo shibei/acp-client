@@ -226,7 +226,10 @@ class TargetObservationExecutor:
         """
         error_lower = str(error).lower()
         
-        if 'connection' in error_lower and 'timeout' in error_lower:
+        # 401认证错误
+        if '401' in error_lower or 'access denied' in error_lower or 'invalid login' in error_lower:
+            return 'authentication_failed'
+        elif 'connection' in error_lower and 'timeout' in error_lower:
             return 'connection_timeout'
         elif 'acp' in error_lower and 'server' in error_lower:
             return 'acp_server_error'
