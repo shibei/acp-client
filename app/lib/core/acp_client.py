@@ -59,6 +59,7 @@ class ACPClient:
             polling_interval: int = 5,
             max_retries: int = 3,
             retry_delay: float = 1.0,
+            retry_interval_seconds: int = 60,  # 新增：重试间隔时间（秒）
             ):
         self.base_url = base_url
         self.user = user
@@ -67,6 +68,7 @@ class ACPClient:
         self.polling_interval = polling_interval
         self.max_retries = max_retries
         self.retry_delay = retry_delay
+        self.retry_interval_seconds = retry_interval_seconds  # 新增：重试间隔时间
         
         self.session = requests.Session()
         self._setup_session()
@@ -122,7 +124,10 @@ class ACPClient:
                 
             except requests.RequestException as e:
                 logger.error(f"获取系统状态失败: {e}, 尝试次数: {attempt + 1}")
-                time.sleep(self.retry_delay)
+                # 使用配置文件中的重试间隔，采用递增策略
+                base_interval = self.retry_interval_seconds
+                delay = min(base_interval + attempt * 2, base_interval * 2)  # 递增但不超过基础间隔的2倍
+                time.sleep(delay)
                 
         return ObservatoryStatus()
     
@@ -207,7 +212,10 @@ class ACPClient:
             except requests.RequestException as e:
                 error_msg = f"启动成像计划失败: {e}"
                 logger.error(f"{error_msg}, 尝试次数: {attempt + 1}")
-                time.sleep(self.retry_delay)
+                # 使用配置文件中的重试间隔，采用递增策略
+                base_interval = self.retry_interval_seconds
+                delay = min(base_interval + attempt * 5, base_interval * 3)  # 递增但不超过基础间隔的3倍
+                time.sleep(delay)
                 
         return False, "启动成像计划重试次数耗尽"
     
@@ -432,7 +440,10 @@ class ACPClient:
                 
             except requests.RequestException as e:
                 logger.error(f"停止脚本失败: {e}, 尝试次数: {attempt + 1}")
-                time.sleep(self.retry_delay)
+                # 使用配置文件中的重试间隔，采用递增策略
+                base_interval = self.retry_interval_seconds
+                delay = min(base_interval + attempt * 5, base_interval * 3)  # 递增但不超过基础间隔的3倍
+                time.sleep(delay)
                 
         return False
     

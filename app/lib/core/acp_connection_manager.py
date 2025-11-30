@@ -16,7 +16,7 @@ from .acp_client import ACPClient
 class ACPConnectionManager:
     """ACP连接管理器 - 负责与ACP服务器的连接和基础通信"""
     
-    def __init__(self, server_url: str, username: str, password: str, dryrun: bool = False):
+    def __init__(self, server_url: str, username: str, password: str, dryrun: bool = False, max_retries: int = 5, retry_interval_seconds: int = 60):
         """初始化连接管理器
         
         Args:
@@ -24,11 +24,15 @@ class ACPConnectionManager:
             username: 用户名
             password: 密码
             dryrun: 是否模拟模式
+            max_retries: ACP客户端最大重试次数（默认5次）
+            retry_interval_seconds: 重试间隔时间（秒，默认60秒）
         """
         self.server_url = server_url
         self.username = username
         self.password = password
         self.dryrun = dryrun
+        self.max_retries = max_retries
+        self.retry_interval_seconds = retry_interval_seconds
         self.client: Optional[ACPClient] = None
         self.is_connected = False
     
@@ -48,7 +52,13 @@ class ACPConnectionManager:
         
         try:
             # print(f"[{datetime.now().strftime('%H:%M:%S')}] 正在连接到ACP服务器...")
-            self.client = ACPClient(self.server_url, self.username, self.password)
+            self.client = ACPClient(
+                self.server_url, 
+                self.username, 
+                self.password, 
+                max_retries=self.max_retries,
+                retry_interval_seconds=self.retry_interval_seconds
+            )
             self.is_connected = True
             # print(f"[{datetime.now().strftime('%H:%M:%S')}] [OK] 成功连接到ACP服务器")
             return True

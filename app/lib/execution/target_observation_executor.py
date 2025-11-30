@@ -43,8 +43,8 @@ class TargetObservationExecutor:
         self.meridian_manager: Optional[MeridianFlipManager] = None
         self.retry_config: Dict[str, Any] = {
             'enabled': True,
-            'max_attempts': 3,
-            'retry_interval_seconds': 300,
+            'max_attempts': 5,  # 减少默认重试次数
+            'retry_interval_seconds': 180,  # 增加默认重试间隔
             'retry_on_errors': ['connection_timeout', 'acp_server_error', 'meridian_flip_failed', 'observation_timeout']
         }
     

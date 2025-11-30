@@ -66,11 +66,21 @@ class NewMultiTargetOrchestrator:
             self.logger.info("正在初始化多目标观测协调器...")
             
             # 3. ACP连接管理器
+            # 从配置中获取重试设置，默认使用配置文件中的参数
+            max_retries = 5  # 默认值（减少避免过度重试）
+            retry_interval_seconds = 60  # 默认重试间隔（秒）
+            
+            if hasattr(config, 'retry_settings') and isinstance(config.retry_settings, dict):
+                max_retries = config.retry_settings.get('max_attempts', 5)
+                retry_interval_seconds = config.retry_settings.get('retry_interval_seconds', 60)
+            
             self.connection_manager = ACPConnectionManager(
                 server_url=config.acp_server.url,
                 username=config.acp_server.username,
                 password=config.acp_server.password,
-                dryrun=self.dry_run
+                dryrun=self.dry_run,
+                max_retries=max_retries,
+                retry_interval_seconds=retry_interval_seconds
             )
             
             # 4. ACP成像管理器
