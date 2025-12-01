@@ -119,7 +119,7 @@ class ACPConnectionManager:
         except Exception as e:
             return {'connected': True, 'error': str(e)}
     
-    def stop_current_operation(self, wait_seconds: int = 5) -> bool:
+    def stop_current_operation(self, wait_seconds: int = 60) -> bool:
         """停止当前操作
         
         Args:

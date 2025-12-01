@@ -69,7 +69,7 @@ class ACPImagingManager:
             return False, error_msg
 
         # 停止当前计划（确保干净启动）
-        self.connection_manager.stop_current_operation(wait_seconds=5)
+        self.connection_manager.stop_current_operation(wait_seconds=60)
 
         self.current_plan = plan
         self.plan_start_time = datetime.now()
